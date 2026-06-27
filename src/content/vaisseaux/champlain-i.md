@@ -52,10 +52,31 @@ perfs:
   - { label: "G max rentrée (qualif.)", valeur: "3,1–3,4 G" }
   - { label: "Δv module de service" }
   - { label: "Masse à sec module de service" }
+cahierDesCharges:
+  reference: "CdC CSA-HSV-CHAMPLAIN — sessions K-01/K-02"
+  contexte: >-
+    Cahier des charges établi par le Conseil pour le premier vaisseau habité
+    opérationnel, sur la base de l'expérience du démonstrateur Victoria.
+  exigences:
+    - "Capsule pour deux kerbals, conçue d'emblée comme opérationnelle."
+    - "Système de sauvetage (LAS) qualifié, dérivé des essais Victoria."
+    - "Bouclier thermique dimensionné sur les relevés de rentrée haute énergie."
+    - "Autonomie initiale de 3 à 5 jours, extensible par module de service."
+    - "Compatible avec le lanceur Ottawa I-2 en configuration standard."
+    - "Vol de qualification non habité avant tout vol d'équipage."
+  comparaison:
+    - { critere: "Équipage", cible: "2 kerbals", livre: "2 kerbals" }
+    - { critere: "Système de sauvetage", cible: "Qualifié pad + max-Q", livre: "Qualifié pad + max-Q" }
+    - { critere: "Autonomie", cible: "3 à 5 jours", livre: "14 jours (3 + 11)" }
+    - { critere: "Lanceur", cible: "Ottawa I-2", livre: "Ottawa I-2" }
+    - { critere: "Qualification non habitée", cible: "1 vol", livre: "Champlain Q1 — succès" }
+    - { critere: "Réutilisabilité capsule", cible: "Non spécifiée", livre: "Démontrée" }
 photo:
   caption: "Champlain I en intégration"
   kind: photo
 photosVol:
+  - { caption: "Séparation de la coiffe", kind: flight }
+  - { caption: "Vue orbitale", kind: flight }
   - { caption: "Séparation de la coiffe", kind: flight }
   - { caption: "Vue orbitale", kind: flight }
 ---

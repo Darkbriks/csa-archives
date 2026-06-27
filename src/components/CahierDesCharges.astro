@@ -1,0 +1,41 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import DataPanel from './DataPanel.astro';
+const { cdc } = Astro.props;
+if (!cdc) return Astro.slots.render('default');
+---
+{cdc && (
+  <section>
+    <SectionLabel label="Cahier des charges" />
+    <DataPanel title={cdc.reference ?? 'Spécification d’origine'} code="ARCHIVÉ">
+      {cdc.contexte && <p class="muted" style="margin:0 0 0.9rem; font-size:0.92rem; line-height:1.55;">{cdc.contexte}</p>}
+
+      {cdc.exigences.length > 0 && (
+        <ul class="bullets" style="margin:0 0 1rem;">
+          {cdc.exigences.map((e) => <li>{e}</li>)}
+        </ul>
+      )}
+
+      {cdc.comparaison.length > 0 && (
+        <table class="cdc-table">
+          <thead><tr><th>Critère</th><th>Prévu</th><th>Livré</th></tr></thead>
+          <tbody>
+            {cdc.comparaison.map((c) => {
+              const livre = c.livre && c.livre.trim();
+              const conforme = livre && livre.toLowerCase() === c.cible.toLowerCase();
+              return (
+                <tr>
+                  <td class="crit">{c.critere}</td>
+                  <td class="cible">{c.cible}</td>
+                  <td class={livre ? (conforme ? 'livre ok' : 'livre diff') : 'livre none'}>
+                    {livre ? c.livre : '— non livré'}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
+    </DataPanel>
+  </section>
+)}

@@ -5,24 +5,26 @@ classe: Lanceur moyen — configuration à 3 cœurs
 statut: Actif
 statutTon: nominal
 resume: >-
-  Variante à trois cœurs du lanceur Ottawa I : un cœur central encadré de deux
-  cœurs identiques tenant lieu de propulseurs d'appoint, surmontés d'un étage
-  supérieur. Cheval de bataille des charges utiles moyennes de l'agence.
+  Variante à trois cœurs : un cœur central encadré de deux cœurs identiques
+  tenant lieu de propulseurs d'appoint, surmontés d'un étage supérieur léger.
+  Lanceur moyen de référence de l'agence.
 famille: Ottawa
 specs:
+  hauteur: "≈ 21,8 m"
   diametre: "1,875 m (cœur)"
   etages: "2 (3 cœurs au 1er étage + étage supérieur)"
+  masseDecollage: "≈ 135 t (config de référence)"
   premierVol: "Exercice K-02"
-  volsReussis: "Plusieurs (dont la qualification Champlain)"
+  volsReussis: "Plusieurs (dont la qualification et les vols Champlain)"
 etagesDetail:
   - { nom: "Premier étage — 3 cœurs", ergols: "Kérosène / oxygène liquide", detail: "Cœur central à poussée réduite, deux cœurs latéraux à pleine poussée largués les premiers." }
-  - { nom: "Étage supérieur", ergols: "À documenter", detail: "Étage de mise en orbite à allumages multiples ; désorbité en fin de mission pour ne pas polluer l'orbite." }
+  - { nom: "Étage supérieur", ergols: "Ergols stockables (allumages multiples)", detail: "Étage de mise en orbite ; désorbité en fin de mission pour ne pas polluer l'orbite." }
 ascension:
   - { id: "S1", titre: "Décollage", detail: "Allumage simultané des trois cœurs." }
   - { id: "S2", titre: "Libération des mâts", detail: "Désancrage du pas de tir mobile." }
   - { id: "S3", titre: "Largage des cœurs latéraux", detail: "Séparation des deux cœurs d'appoint une fois leurs ergols épuisés." }
   - { id: "S4", titre: "Séparation du cœur central", detail: "Largage du premier étage." }
-  - { id: "S5", titre: "Largage de la tour de sauvetage", detail: "Éjection de la tour, l'atmosphère n'étant plus une menace." }
+  - { id: "S5", titre: "Largage de la coiffe", detail: "Exposition de la charge utile." }
   - { id: "S6", titre: "Allumage de l'étage supérieur", detail: "Mise en orbite de la charge utile." }
   - { id: "S7", titre: "Séparation de la charge utile", detail: "Libération du vaisseau ou de la sonde sur l'orbite visée." }
 perfs:
@@ -51,12 +53,12 @@ la réutilisation des chaînes de production existantes.
 
 L'Ottawa I-2 est le lanceur moyen de référence de l'agence : il a porté les
 sondes lourdes du programme Alouette, déployé les réseaux Aurora, et assuré la
-qualification puis les vols du programme **Champlain**. Sa charge utile démontrée
-en orbite basse est de cinq tonnes.
+qualification puis les vols du programme Champlain. Sa charge utile démontrée en
+orbite basse est de cinq tonnes.
 
 ## Limites connues
 
 La plateforme repose sur une génération technologique vieillissante : étage
 supérieur dépassé, diamètre de cœur restreint, peu adapté aux charges
-volumineuses qui commencent à émerger (sondes géantes, modules habitables). Son
-successeur, l'Ottawa II, est en développement.
+volumineuses qui commencent à émerger. Son successeur, l'Ottawa II, est en
+développement.

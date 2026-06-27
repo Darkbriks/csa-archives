@@ -7,6 +7,7 @@ import RefLink from '../components/RefLink.astro';
 import ArchivePhoto from '../components/ArchivePhoto.astro';
 import Connexions from '../components/Connexions.astro';
 import FlightHistory from '../components/FlightHistory.astro';
+import CahierDesCharges from '../components/CahierDesCharges.astro';
 import { ref as refUrl } from '../lib/url.ts';
 
 const { item, flights = [] } = Astro.props;
@@ -117,6 +118,8 @@ const specRows = [
         </div>
       </section>
     )}
+
+    <CahierDesCharges cdc={d.cahierDesCharges} />
 
     <FlightHistory flights={flights} />
 
