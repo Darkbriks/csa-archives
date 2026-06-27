@@ -1,0 +1,85 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Stamp from '../components/Stamp.astro';
+import DataPanel from '../components/DataPanel.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import RefLink from '../components/RefLink.astro';
+import ArchivePhoto from '../components/ArchivePhoto.astro';
+import Connexions from '../components/Connexions.astro';
+import { ref as refUrl } from '../lib/url.ts';
+
+const { item } = Astro.props;
+const d = item.data;
+const roleKey = { 'Pilote': 'pilote', 'Scientifique': 'scientifique', 'Ingénieur': 'ingenieur' }[d.specialite] ?? 'pilote';
+
+const specRows = [
+  ['Spécialité', d.specialite],
+  ['Recrutement', d.specs.recrutement],
+  ['Vols effectués', d.specs.volsEffectues],
+  ['Temps en espace', d.specs.tempsEspace],
+  ['Sorties (EVA)', d.specs.evas],
+].filter(([, v]) => v != null && v !== '');
+---
+<BaseLayout title={d.title} description={d.resume}>
+  <article class="sheet" style="padding-top:2.5rem; padding-bottom:1rem;">
+
+    <div class="dossier-hero">
+      <ArchivePhoto src={d.photo?.src} caption={d.photo?.caption ?? "Photo d'identification"} ref={d.photo?.ref ?? d.ref} aspect="3 / 4" kind={d.photo?.kind ?? 'portrait'} />
+      <div>
+        <p class="eyebrow">Dossier kerbonaute · {d.ref}</p>
+        <h1>{d.title}</h1>
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-top:0.7rem; flex-wrap:wrap;">
+          <span class="specialty" data-role={roleKey}>{d.specialite}</span>
+          <span class="xp" title={`Niveau ${d.niveau}`}>
+            {[0,1,2,3,4].map((i) => <i class={i < d.niveau ? 'on' : ''}></i>)}
+          </span>
+          <Stamp tone={d.statutTon} label={d.statut} />
+        </div>
+        <p class="muted" style="max-width:54ch; margin:0.9rem 0 0; font-size:1.05rem;">{d.resume}</p>
+      </div>
+    </div>
+
+    <hr style="border:none; border-top:2px solid var(--ink); margin:1.75rem 0 0;" />
+
+    <div class="grid-2" style="margin-top:1.75rem; align-items:start;">
+      <DataPanel title="État de service" code="FORM. CSA-09">
+        <dl style="margin:0;">{specRows.map(([k, v]) => <div class="datarow"><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+      </DataPanel>
+
+      <DataPanel title="Missions" code="REGISTRE DE VOL">
+        {d.missions.length === 0
+          ? <p class="tiny muted mono" style="margin:0.3rem 0;">Aucune mission enregistrée.</p>
+          : <dl style="margin:0;">{d.missions.map((m) => (
+              <div class="datarow"><dt>Vol</dt><dd><RefLink label={m.label} to={m.to} slug={m.slug} /></dd></div>
+            ))}</dl>}
+      </DataPanel>
+    </div>
+
+    {d.distinctions.length > 0 && (
+      <section>
+        <SectionLabel label="Distinctions" />
+        <DataPanel>
+          <ul style="margin:0; padding-left:1.1rem; font-size:0.95rem;">
+            {d.distinctions.map((dist) => <li style="margin:0.3rem 0;">{dist}</li>)}
+          </ul>
+        </DataPanel>
+      </section>
+    )}
+
+    <section>
+      <SectionLabel label="Notes de dossier" />
+      <div class="prose"><slot /></div>
+    </section>
+
+    {d.missions.length > 0 && (
+      <>
+        <SectionLabel label="Connexions" />
+        <Connexions items={d.missions.map((m) => ({ kind: 'Mission', ...m }))} />
+      </>
+    )}
+
+    <p class="tiny muted mono" style="margin-top:2rem;">
+      &larr; <a href={refUrl('equipage', '')}>Index de l'équipage</a>
+    </p>
+  </article>
+</BaseLayout>

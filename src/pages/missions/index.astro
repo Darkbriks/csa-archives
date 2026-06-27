@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import RegistryIndex from '../../components/RegistryIndex.astro';
+const items = await getCollection('missions');
+---
+<RegistryIndex items={items} collection="missions" title="Missions"
+  eyebrow="Index · Journal des opérations"
+  desc="Comptes rendus de vol de l'agence — succès, échecs, et enseignements."
+  subtitle={(d) => [d.date, d.habite ? 'habité' : 'non habité'].filter(Boolean).join(' · ')} />

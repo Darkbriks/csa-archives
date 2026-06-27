@@ -1,0 +1,8 @@
+---
+import { getCollection } from 'astro:content';
+import RegistryIndex from '../../components/RegistryIndex.astro';
+const items = await getCollection('programmes');
+---
+<RegistryIndex items={items} collection="programmes" title="Programmes"
+  eyebrow="Index · Programmes de l'agence"
+  desc="Les grands programmes structurant l'effort spatial de l'agence." />

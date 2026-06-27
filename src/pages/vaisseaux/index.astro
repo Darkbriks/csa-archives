@@ -1,0 +1,8 @@
+---
+import { getCollection } from 'astro:content';
+import RegistryIndex from '../../components/RegistryIndex.astro';
+const items = await getCollection('vaisseaux');
+---
+<RegistryIndex items={items} collection="vaisseaux" title="Vaisseaux & charges utiles"
+  eyebrow="Index · Section vaisseaux"
+  desc="Capsules, sondes, étages et modules conçus par l'agence. Chaque fiche est enrichie des performances relevées en vol." />

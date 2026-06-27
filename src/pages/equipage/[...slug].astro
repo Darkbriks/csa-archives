@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import EquipageLayout from '../../layouts/EquipageLayout.astro';
+export async function getStaticPaths() {
+  const items = await getCollection('equipage');
+  return items.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+<EquipageLayout item={item}><Content /></EquipageLayout>

@@ -1,0 +1,138 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Stamp from '../components/Stamp.astro';
+import DataPanel from '../components/DataPanel.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import RefLink from '../components/RefLink.astro';
+import ArchivePhoto from '../components/ArchivePhoto.astro';
+import Connexions from '../components/Connexions.astro';
+import FlightHistory from '../components/FlightHistory.astro';
+import { ref as refUrl } from '../lib/url.ts';
+
+const { item, flights = [] } = Astro.props;
+const d = item.data;
+
+const specRows = [
+  ['Classe', d.classe],
+  ['Équipage', d.equipage != null ? `${d.equipage} kerbal(s)` : null],
+  ['Masse (chargé)', d.specs.masse],
+  ['Masse (à vide)', d.specs.masseVide],
+  ['Taille', d.specs.taille],
+  ['Autonomie', d.specs.autonomie],
+  ['Amarrage', d.specs.amarrage],
+].filter(([, v]) => v != null && v !== '');
+---
+<BaseLayout title={d.title} description={d.resume}>
+  <article class="sheet" style="padding-top:2.5rem; padding-bottom:1rem;">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow">Dossier vaisseau · {d.ref}</p>
+        <h1>{d.title}</h1>
+        <p class="muted" style="max-width:60ch; margin:0.6rem 0 0; font-size:1.05rem;">{d.resume}</p>
+        <div class="connexions" style="margin-top:1rem;">
+          {d.programme && <a class="connexion" href={d.programme.to && d.programme.slug ? refUrl(d.programme.to, d.programme.slug) : '#'}><span class="k">Programme</span>{d.programme.label}</a>}
+          {d.lanceur && <a class="connexion" href={d.lanceur.to && d.lanceur.slug ? refUrl(d.lanceur.to, d.lanceur.slug) : '#'}><span class="k">Lancé par</span>{d.lanceur.label}</a>}
+        </div>
+      </div>
+      <Stamp tone={d.statutTon} label={d.statut} />
+    </div>
+
+    <hr style="border:none; border-top:2px solid var(--ink); margin:1.5rem 0 0;" />
+
+    <div class="grid-2" style="margin-top:1.75rem; align-items:start;">
+      <DataPanel title="Fiche signalétique" code="FORM. CSA-04">
+        <dl style="margin:0;">
+          {specRows.map(([k, v]) => <div class="datarow"><dt>{k}</dt><dd>{v}</dd></div>)}
+          {d.lanceur && (
+            <div class="datarow"><dt>Lanceur</dt><dd><RefLink label={d.lanceur.label} to={d.lanceur.to} slug={d.lanceur.slug} /></dd></div>
+          )}
+        </dl>
+      </DataPanel>
+
+      {d.photo ? (
+        <ArchivePhoto src={d.photo.src} caption={d.photo.caption ?? 'Vue du vaisseau'} ref={d.photo.ref ?? d.ref} aspect="4 / 3" kind={d.photo.kind ?? 'photo'} />
+      ) : (
+        <DataPanel title="Performances" code="RELEVÉ KER">
+          {d.perfs.length === 0
+            ? <p class="tiny muted mono" style="margin:0.3rem 0;">Aucune performance enregistrée.</p>
+            : <dl style="margin:0;">{d.perfs.map((p) => (
+                <div class="datarow"><dt>{p.label}</dt>{p.valeur ? <dd>{p.valeur}</dd> : <dd class="todo"><span class="todo-tag">À RELEVER</span></dd>}</div>
+              ))}</dl>}
+        </DataPanel>
+      )}
+    </div>
+
+    {d.photo && d.perfs.length > 0 && (
+      <section>
+        <SectionLabel label="Performances — relevé KER" />
+        <DataPanel>
+          <dl style="margin:0;">{d.perfs.map((p) => (
+            <div class="datarow"><dt>{p.label}</dt>{p.valeur ? <dd>{p.valeur}</dd> : <dd class="todo"><span class="todo-tag">À RELEVER</span></dd>}</div>
+          ))}</dl>
+        </DataPanel>
+      </section>
+    )}
+
+    {d.sousSystemes.length > 0 && (
+      <section>
+        <SectionLabel label="Sous-systèmes" />
+        <DataPanel>
+          <dl style="margin:0;">{d.sousSystemes.map((s) => (
+            <div class="datarow"><dt>{s.role}</dt><dd style="font-weight:400; font-size:0.86rem;">{s.detail}</dd></div>
+          ))}</dl>
+        </DataPanel>
+      </section>
+    )}
+
+    {d.composition.length > 0 && (
+      <section>
+        <SectionLabel label="Composition" />
+        <table class="parts-table">
+          <thead><tr><th>Qté</th><th>Élément</th><th>Rôle</th></tr></thead>
+          <tbody>{d.composition.map((p) => (
+            <tr><td class="qty">{p.qty ? p.qty + '×' : '—'}</td><td>{p.nom}</td><td class="role">{p.role}</td></tr>
+          ))}</tbody>
+        </table>
+      </section>
+    )}
+
+    {d.sequence.length > 0 && (
+      <section>
+        <SectionLabel label="Séquence propre au vaisseau" />
+        <ol class="stages">{d.sequence.map((e) => (
+          <li class="stage">
+            <div class="stage__id">{e.id}<small>phase</small></div>
+            <div><div class="stage__desc"><strong>{e.titre}</strong></div>{e.detail && <div class="stage__parts">{e.detail}</div>}</div>
+          </li>
+        ))}</ol>
+      </section>
+    )}
+
+    {d.photosVol.length > 0 && (
+      <section>
+        <SectionLabel label="Images en vol" />
+        <div class="photo-strip">
+          {d.photosVol.map((ph) => <ArchivePhoto src={ph.src} caption={ph.caption} ref={ph.ref} aspect="4 / 3" kind={ph.kind ?? 'flight'} />)}
+        </div>
+      </section>
+    )}
+
+    <FlightHistory flights={flights} />
+
+    <section>
+      <SectionLabel label="Notes de dossier" />
+      <div class="prose"><slot /></div>
+    </section>
+
+    <SectionLabel label="Connexions" />
+    <Connexions items={[
+      d.programme && { kind: 'Programme', ...d.programme },
+      d.lanceur && { kind: 'Lanceur', ...d.lanceur },
+    ].filter(Boolean)} />
+
+    <p class="tiny muted mono" style="margin-top:2rem;">
+      &larr; <a href={refUrl('vaisseaux', '')}>Index des vaisseaux</a>
+    </p>
+  </article>
+</BaseLayout>

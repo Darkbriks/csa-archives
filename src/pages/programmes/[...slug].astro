@@ -1,0 +1,11 @@
+---
+import { getCollection } from 'astro:content';
+import ProgrammeLayout from '../../layouts/ProgrammeLayout.astro';
+export async function getStaticPaths() {
+  const items = await getCollection('programmes');
+  return items.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+<ProgrammeLayout item={item}><Content /></ProgrammeLayout>

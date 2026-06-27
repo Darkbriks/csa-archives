@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import RegistryIndex from '../../components/RegistryIndex.astro';
+const items = await getCollection('conseil');
+---
+<RegistryIndex items={items} collection="conseil" title="Conseil d'administration"
+  eyebrow="Index · Comptes rendus de séance"
+  desc="Décisions, arbitrages et orientations du Conseil, exercice par exercice."
+  subtitle={(d) => d.date} />

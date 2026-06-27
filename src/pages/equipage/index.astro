@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import RegistryIndex from '../../components/RegistryIndex.astro';
+const items = await getCollection('equipage');
+---
+<RegistryIndex items={items} collection="equipage" title="Équipage"
+  eyebrow="Index · Corps des kerbonautes"
+  desc="États de service des kerbonautes de l'agence."
+  subtitle={(d) => d.specialite} />

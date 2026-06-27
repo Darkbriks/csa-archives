@@ -1,0 +1,26 @@
+---
+// Liste de missions liées, calculée au build (pas de saisie manuelle).
+import SectionLabel from './SectionLabel.astro';
+import Stamp from './Stamp.astro';
+import { ref as refUrl } from '../lib/url.ts';
+const { flights = [], label = 'Historique de vol' } = Astro.props;
+const sorted = [...flights].sort((a, b) => (a.data.ref).localeCompare(b.data.ref));
+---
+{sorted.length > 0 && (
+  <section>
+    <SectionLabel label={label} />
+    <div class="stack">
+      {sorted.map((m) => (
+        <a href={refUrl('missions', m.slug)} class="datapanel" style="display:block; text-decoration:none; color:inherit;">
+          <div class="datapanel__body" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+            <div>
+              <div class="mono tiny" style="color:var(--ink-3); letter-spacing:0.08em;">{m.data.ref}{m.data.date ? ` · ${m.data.date}` : ''}</div>
+              <div style="font-family:var(--font-display); font-weight:600; font-size:1.05rem; margin-top:0.1rem;">{m.data.title}</div>
+            </div>
+            <Stamp tone={m.data.statutTon} label={m.data.statut} />
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

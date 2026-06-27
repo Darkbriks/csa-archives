@@ -1,0 +1,17 @@
+---
+// Bandeau de liens connexes en pied de dossier.
+// items: [{ kind, label, to, slug }]
+import { ref as refUrl } from '../lib/url.ts';
+const { items = [] } = Astro.props;
+const visible = items.filter((i) => i && i.label);
+---
+{visible.length > 0 && (
+  <div class="connexions">
+    {visible.map((i) => {
+      const href = i.to && i.slug ? refUrl(i.to, i.slug) : null;
+      return href
+        ? <a class="connexion" href={href}><span class="k">{i.kind}</span>{i.label}</a>
+        : <span class="connexion"><span class="k">{i.kind}</span>{i.label}</span>;
+    })}
+  </div>
+)}

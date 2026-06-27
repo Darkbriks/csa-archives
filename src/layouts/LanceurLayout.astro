@@ -1,0 +1,114 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Stamp from '../components/Stamp.astro';
+import DataPanel from '../components/DataPanel.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import RefLink from '../components/RefLink.astro';
+import ArchivePhoto from '../components/ArchivePhoto.astro';
+import Connexions from '../components/Connexions.astro';
+import FlightHistory from '../components/FlightHistory.astro';
+import { ref as refUrl } from '../lib/url.ts';
+
+const { item, flights = [] } = Astro.props;
+const d = item.data;
+
+const specRows = [
+  ['Classe', d.classe],
+  ['Famille', d.famille],
+  ['Hauteur', d.specs.hauteur],
+  ['Diamètre cœur', d.specs.diametre],
+  ['Étages', d.specs.etages],
+  ['Masse au décollage', d.specs.masseDecollage],
+  ['Premier vol', d.specs.premierVol],
+  ['Vols réussis', d.specs.volsReussis],
+].filter(([, v]) => v != null && v !== '');
+---
+<BaseLayout title={d.title} description={d.resume}>
+  <article class="sheet" style="padding-top:2.5rem; padding-bottom:1rem;">
+
+    <div class="dossier-hero">
+      <ArchivePhoto src={d.photo?.src} caption={d.photo?.caption ?? 'Vue depuis le pas de tir'} ref={d.photo?.ref ?? d.ref} aspect="3 / 4" kind={d.photo?.kind ?? 'pad'} />
+      <div>
+        <p class="eyebrow">Dossier lanceur · {d.ref}</p>
+        <h1>{d.title}</h1>
+        <p class="muted" style="max-width:54ch; margin:0.6rem 0 0; font-size:1.05rem;">{d.resume}</p>
+        <div style="margin-top:1rem;"><Stamp tone={d.statutTon} label={d.statut} /></div>
+      </div>
+    </div>
+
+    <hr style="border:none; border-top:2px solid var(--ink); margin:1.75rem 0 0;" />
+
+    <div class="grid-2" style="margin-top:1.75rem; align-items:start;">
+      <DataPanel title="Fiche signalétique" code="FORM. CSA-02">
+        <dl style="margin:0;">{specRows.map(([k, v]) => <div class="datarow"><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+      </DataPanel>
+      <DataPanel title="Performances" code="RELEVÉ KER">
+        {d.perfs.length === 0
+          ? <p class="tiny muted mono" style="margin:0.3rem 0;">Aucune performance enregistrée.</p>
+          : <dl style="margin:0;">{d.perfs.map((p) => (
+              <div class="datarow"><dt>{p.label}</dt>{p.valeur ? <dd>{p.valeur}</dd> : <dd class="todo"><span class="todo-tag">À RELEVER</span></dd>}</div>
+            ))}</dl>}
+      </DataPanel>
+    </div>
+
+    {d.etagesDetail.length > 0 && (
+      <section>
+        <SectionLabel label="Étages" />
+        <DataPanel>
+          <dl style="margin:0;">{d.etagesDetail.map((e) => (
+            <div class="datarow">
+              <dt>{e.nom}</dt>
+              <dd style="font-weight:400; font-size:0.86rem;">
+                {e.ergols && <span class="mono" style="color:var(--slate);">{e.ergols}</span>}{e.ergols && e.detail ? ' — ' : ''}{e.detail}
+              </dd>
+            </div>
+          ))}</dl>
+        </DataPanel>
+      </section>
+    )}
+
+    {d.ascension.length > 0 && (
+      <section>
+        <SectionLabel label="Séquence d'ascension" />
+        <ol class="stages">{d.ascension.map((e) => (
+          <li class="stage">
+            <div class="stage__id">{e.id}<small>étage</small></div>
+            <div><div class="stage__desc"><strong>{e.titre}</strong></div>{e.detail && <div class="stage__parts">{e.detail}</div>}</div>
+          </li>
+        ))}</ol>
+      </section>
+    )}
+
+    {d.chargesCertifiees.length > 0 && (
+      <section>
+        <SectionLabel label="Charges utiles certifiées" />
+        <DataPanel>
+          <dl style="margin:0;">{d.chargesCertifiees.map((c) => (
+            <div class="datarow"><dt>Charge</dt><dd><RefLink label={c.label} to={c.to} slug={c.slug} /></dd></div>
+          ))}</dl>
+        </DataPanel>
+      </section>
+    )}
+
+    {d.photosVol.length > 0 && (
+      <section>
+        <SectionLabel label="Images en vol" />
+        <div class="photo-strip">{d.photosVol.map((ph) => <ArchivePhoto src={ph.src} caption={ph.caption} ref={ph.ref} aspect="4 / 3" kind={ph.kind ?? 'flight'} />)}</div>
+      </section>
+    )}
+
+    <FlightHistory flights={flights} />
+
+    <section>
+      <SectionLabel label="Notes de dossier" />
+      <div class="prose"><slot /></div>
+    </section>
+
+    <SectionLabel label="Connexions" />
+    <Connexions items={d.chargesCertifiees.map((c) => ({ kind: 'Charge', ...c }))} />
+
+    <p class="tiny muted mono" style="margin-top:2rem;">
+      &larr; <a href={refUrl('lanceurs', '')}>Index des lanceurs</a>
+    </p>
+  </article>
+</BaseLayout>

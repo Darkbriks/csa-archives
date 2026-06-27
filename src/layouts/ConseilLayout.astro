@@ -1,0 +1,99 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Stamp from '../components/Stamp.astro';
+import DataPanel from '../components/DataPanel.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Connexions from '../components/Connexions.astro';
+import { ref as refUrl } from '../lib/url.ts';
+
+const { item } = Astro.props;
+const d = item.data;
+
+const verdictKey = (v) => {
+  const s = (v ?? '').toLowerCase();
+  if (s.includes('approu')) return 'approuve';
+  if (s.includes('report') || s.includes('attente')) return 'reporte';
+  if (s.includes('rejet') || s.includes('refus')) return 'rejete';
+  return 'approuve';
+};
+---
+<BaseLayout title={d.title} description={d.resume}>
+  <article class="sheet" style="padding-top:2.5rem; padding-bottom:1rem;">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow">Compte rendu de séance · {d.ref}{d.date ? ` · ${d.date}` : ''}</p>
+        <h1>{d.title}</h1>
+        <p class="muted" style="max-width:62ch; margin:0.6rem 0 0; font-size:1.05rem;">{d.resume}</p>
+      </div>
+      <Stamp tone={d.statutTon} label={d.statut} />
+    </div>
+
+    <hr style="border:none; border-top:2px solid var(--ink); margin:1.5rem 0 0;" />
+
+    {d.ordreDuJour.length > 0 && (
+      <section style="margin-top:1.5rem;">
+        <SectionLabel label="Ordre du jour" />
+        <DataPanel><ul class="bullets">{d.ordreDuJour.map((o) => <li>{o}</li>)}</ul></DataPanel>
+      </section>
+    )}
+
+    {d.renseignement.length > 0 && (
+      <section>
+        <SectionLabel label="Bulletin de renseignement spatial" />
+        {d.renseignement.map((r) => (
+          <div class="intel" data-tone={r.ton}>
+            <span class="src">{r.source}</span>{r.detail}
+          </div>
+        ))}
+      </section>
+    )}
+
+    {d.decisions.length > 0 && (
+      <section>
+        <SectionLabel label="Décisions" />
+        {d.decisions.map((dec) => (
+          <div class="decision-item">
+            <div class="decision-item__head">
+              <span class="decision-item__title">{dec.titre}</span>
+              {dec.verdict && <span class="verdict" data-v={verdictKey(dec.verdict)}>{dec.verdict}</span>}
+            </div>
+            {dec.detail && <div class="decision-item__body">{dec.detail}</div>}
+          </div>
+        ))}
+      </section>
+    )}
+
+    {d.budget.length > 0 && (
+      <section>
+        <SectionLabel label="Synthèse budgétaire" />
+        <DataPanel>
+          <table class="budget-table"><tbody>
+            {d.budget.map((b) => (
+              <tr><td>{b.poste}</td><td class={b.ton === 'pos' ? 'pos' : b.ton === 'neg' ? 'neg' : ''}>{b.montant}</td></tr>
+            ))}
+          </tbody></table>
+        </DataPanel>
+      </section>
+    )}
+
+    <section>
+      <SectionLabel label="Notes de séance" />
+      <div class="prose"><slot /></div>
+    </section>
+
+    {d.liens.length > 0 && (
+      <>
+        <SectionLabel label="Programmes & dossiers concernés" />
+        <Connexions items={d.liens.map((l) => ({
+          kind: l.to === 'programmes' ? 'Programme' : l.to === 'missions' ? 'Mission' : l.to === 'lanceurs' ? 'Lanceur' : l.to === 'vaisseaux' ? 'Vaisseau' : 'Réf.',
+          ...l,
+        }))} />
+      </>
+    )}
+
+    <p class="tiny muted mono" style="margin-top:2rem;">
+      &larr; <a href={refUrl('conseil', '')}>Index des séances</a>
+    </p>
+  </article>
+</BaseLayout>

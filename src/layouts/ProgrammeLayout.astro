@@ -1,0 +1,66 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Stamp from '../components/Stamp.astro';
+import DataPanel from '../components/DataPanel.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Connexions from '../components/Connexions.astro';
+import { ref as refUrl } from '../lib/url.ts';
+
+const { item } = Astro.props;
+const d = item.data;
+---
+<BaseLayout title={d.title} description={d.resume}>
+  <article class="sheet" style="padding-top:2.5rem; padding-bottom:1rem;">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow">Dossier programme · {d.ref}</p>
+        <h1>{d.title}</h1>
+        {d.devise && <p class="mono tiny" style="color:var(--slate); margin-top:0.4rem; letter-spacing:0.04em;">{d.devise}</p>}
+        <p class="muted" style="max-width:60ch; margin:0.7rem 0 0; font-size:1.05rem;">{d.resume}</p>
+      </div>
+      <Stamp tone={d.statutTon} label={d.statut} />
+    </div>
+
+    <hr style="border:none; border-top:2px solid var(--ink); margin:1.5rem 0 0;" />
+
+    {d.objectifs.length > 0 && (
+      <section>
+        <SectionLabel label="Objectifs" />
+        <DataPanel>
+          <ul style="margin:0; padding-left:1.1rem; font-size:0.95rem;">
+            {d.objectifs.map((o) => <li style="margin:0.3rem 0;">{o}</li>)}
+          </ul>
+        </DataPanel>
+      </section>
+    )}
+
+    {d.jalons.length > 0 && (
+      <section>
+        <SectionLabel label="Jalons" />
+        <ol class="stages">{d.jalons.map((j) => (
+          <li class="stage">
+            <div class="stage__id">{j.date ?? '—'}<small>{j.statut ?? ''}</small></div>
+            <div><div class="stage__desc"><strong>{j.titre}</strong></div>{j.detail && <div class="stage__parts">{j.detail}</div>}</div>
+          </li>
+        ))}</ol>
+      </section>
+    )}
+
+    <section>
+      <SectionLabel label="Notes de dossier" />
+      <div class="prose"><slot /></div>
+    </section>
+
+    {d.materiel.length > 0 && (
+      <>
+        <SectionLabel label="Matériel rattaché" />
+        <Connexions items={d.materiel.map((m) => ({ kind: m.to === 'lanceurs' ? 'Lanceur' : m.to === 'vaisseaux' ? 'Vaisseau' : m.to === 'equipage' ? 'Kerbonaute' : 'Réf.', ...m }))} />
+      </>
+    )}
+
+    <p class="tiny muted mono" style="margin-top:2rem;">
+      &larr; <a href={refUrl('programmes', '')}>Index des programmes</a>
+    </p>
+  </article>
+</BaseLayout>

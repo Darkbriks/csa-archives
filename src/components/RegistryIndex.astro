@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Stamp from './Stamp.astro';
+import { ref as refUrl } from '../lib/url.ts';
+
+// items : entrées de collection ; collection : nom (pour les liens) ;
+// subtitle(d) : fonction optionnelle renvoyant une ligne mono sous le titre.
+const { items, collection, title, eyebrow, desc, subtitle } = Astro.props;
+const sorted = [...items].sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+<BaseLayout title={title}>
+  <div class="sheet" style="padding-top:2.5rem;">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    {desc && <p class="muted" style="max-width:62ch; margin-top:0.6rem;">{desc}</p>}
+
+    <div class="section-label">Registre</div>
+    <div class="stack">
+      {sorted.map((it) => (
+        <a href={refUrl(collection, it.slug)} class="datapanel" style="display:block; text-decoration:none; color:inherit;">
+          <div class="datapanel__body" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+            <div>
+              <div class="mono tiny" style="color:var(--ink-3); letter-spacing:0.08em;">{it.data.ref}</div>
+              <div style="font-family:var(--font-display); font-weight:600; font-size:1.2rem; margin-top:0.1rem;">{it.data.title}</div>
+              {subtitle && subtitle(it.data) && (
+                <div class="mono tiny" style="color:var(--slate); margin-top:0.15rem;">{subtitle(it.data)}</div>
+              )}
+              <div class="muted tiny" style="margin-top:0.2rem; max-width:58ch;">{it.data.resume}</div>
+            </div>
+            <Stamp tone={it.data.statutTon} label={it.data.statut} />
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

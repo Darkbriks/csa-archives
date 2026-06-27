@@ -1,0 +1,9 @@
+---
+const { title, code } = Astro.props;
+---
+<section class="datapanel">
+  {(title || code) && (
+    <div class="datapanel__head"><span>{title}</span><span>{code}</span></div>
+  )}
+  <div class="datapanel__body"><slot /></div>
+</section>

@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import LanceurLayout from '../../layouts/LanceurLayout.astro';
+export async function getStaticPaths() {
+  const items = await getCollection('lanceurs');
+  const missions = await getCollection('missions');
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item, flights: missions.filter((m) => m.data.lanceur?.slug === item.slug) },
+  }));
+}
+const { item, flights } = Astro.props;
+const { Content } = await item.render();
+---
+<LanceurLayout item={item} flights={flights}><Content /></LanceurLayout>

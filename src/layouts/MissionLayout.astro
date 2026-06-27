@@ -1,0 +1,117 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Stamp from '../components/Stamp.astro';
+import DataPanel from '../components/DataPanel.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import RefLink from '../components/RefLink.astro';
+import ArchivePhoto from '../components/ArchivePhoto.astro';
+import Connexions from '../components/Connexions.astro';
+import { ref as refUrl } from '../lib/url.ts';
+
+const { item } = Astro.props;
+const d = item.data;
+
+const fiche = [
+  ['Programme', d.programme],
+  ['Lanceur', d.lanceur],
+  ['Charge utile', d.charge],
+].filter(([, v]) => v);
+---
+<BaseLayout title={d.title} description={d.resume}>
+  <article class="sheet" style="padding-top:2.5rem; padding-bottom:1rem;">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow">Dossier mission · {d.ref}{d.date ? ` · ${d.date}` : ''}</p>
+        <h1>{d.title}</h1>
+        <p class="muted" style="max-width:60ch; margin:0.6rem 0 0; font-size:1.05rem;">{d.resume}</p>
+      </div>
+      <Stamp tone={d.statutTon} label={d.statut} />
+    </div>
+
+    <hr style="border:none; border-top:2px solid var(--ink); margin:1.5rem 0 0;" />
+
+    <div class="grid-2" style="margin-top:1.75rem; align-items:start;">
+      <DataPanel title="Fiche de mission" code="FORM. CSA-01">
+        <dl style="margin:0;">
+          {fiche.map(([k, v]) => (
+            <div class="datarow"><dt>{k}</dt><dd><RefLink label={v.label} to={v.to} slug={v.slug} /></dd></div>
+          ))}
+          <div class="datarow"><dt>Type</dt><dd>{d.habite ? 'Vol habité' : 'Vol non habité'}</dd></div>
+          {d.equipage.length > 0 && (
+            <div class="datarow">
+              <dt>Équipage</dt>
+              <dd style="font-weight:400;">{d.equipage.map((m, i) => (<><RefLink label={m.label} to={m.to} slug={m.slug} />{i < d.equipage.length - 1 ? ', ' : ''}</>))}</dd>
+            </div>
+          )}
+        </dl>
+      </DataPanel>
+
+      {d.metriques.length > 0 ? (
+        <DataPanel title="Relevés de vol" code="TÉLÉMÉTRIE">
+          <dl style="margin:0;">{d.metriques.map((p) => (
+            <div class="datarow"><dt>{p.label}</dt>{p.valeur ? <dd>{p.valeur}</dd> : <dd class="todo"><span class="todo-tag">À RELEVER</span></dd>}</div>
+          ))}</dl>
+        </DataPanel>
+      ) : d.photo ? (
+        <ArchivePhoto src={d.photo.src} caption={d.photo.caption} ref={d.photo.ref ?? d.ref} aspect="4 / 3" kind={d.photo.kind ?? 'flight'} />
+      ) : null}
+    </div>
+
+    {d.objectifs.length > 0 && (
+      <section>
+        <SectionLabel label="Objectifs" />
+        <DataPanel><ul class="bullets">{d.objectifs.map((o) => <li>{o}</li>)}</ul></DataPanel>
+      </section>
+    )}
+
+    {d.journal.length > 0 && (
+      <section>
+        <SectionLabel label="Journal de bord" />
+        <ul class="journal">{d.journal.map((j) => (
+          <li>
+            {j.t && <div class="j-t">{j.t}</div>}
+            <div class="j-title">{j.titre}</div>
+            {j.detail && <div class="j-detail">{j.detail}</div>}
+          </li>
+        ))}</ul>
+      </section>
+    )}
+
+    {d.anomalies.length > 0 && (
+      <section>
+        <SectionLabel label="Anomalies & enseignements" />
+        <DataPanel><ul class="bullets">{d.anomalies.map((a) => <li>{a}</li>)}</ul></DataPanel>
+      </section>
+    )}
+
+    {d.photosVol.length > 0 && (
+      <section>
+        <SectionLabel label="Images de mission" />
+        <div class="photo-strip">{d.photosVol.map((ph) => <ArchivePhoto src={ph.src} caption={ph.caption} ref={ph.ref} aspect="4 / 3" kind={ph.kind ?? 'flight'} />)}</div>
+      </section>
+    )}
+
+    <section>
+      <SectionLabel label="Notes de dossier" />
+      <div class="prose"><slot /></div>
+    </section>
+
+    <SectionLabel label="Connexions" />
+    <Connexions items={[
+      d.programme && { kind: 'Programme', ...d.programme },
+      d.lanceur && { kind: 'Lanceur', ...d.lanceur },
+      d.charge && { kind: 'Charge', ...d.charge },
+      ...d.equipage.map((m) => ({ kind: 'Équipage', ...m })),
+    ].filter(Boolean)} />
+
+    <div class="prevnext">
+      <span>{d.precedente ? <a href={d.precedente.to && d.precedente.slug ? refUrl(d.precedente.to, d.precedente.slug) : '#'}>&larr; {d.precedente.label}</a> : <span></span>}</span>
+      <span>{d.suivante ? <a href={d.suivante.to && d.suivante.slug ? refUrl(d.suivante.to, d.suivante.slug) : '#'}>{d.suivante.label} &rarr;</a> : ''}</span>
+    </div>
+
+    <p class="tiny muted mono" style="margin-top:1.5rem;">
+      &larr; <a href={refUrl('missions', '')}>Index des missions</a>
+    </p>
+  </article>
+</BaseLayout>

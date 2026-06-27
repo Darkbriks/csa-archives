@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import RegistryIndex from '../../components/RegistryIndex.astro';
+const items = await getCollection('lanceurs');
+---
+<RegistryIndex items={items} collection="lanceurs" title="Lanceurs"
+  eyebrow="Index · Section lanceurs"
+  desc="Familles de lanceurs de l'agence, de leurs variantes et de leurs charges utiles certifiées."
+  subtitle={(d) => d.famille ? `Famille ${d.famille}` : null} />

@@ -1,0 +1,8 @@
+dist/
+node_modules/
+npm-debug.log*
+.env
+.env.production
+.DS_Store
+.astro/
+package-lock.json

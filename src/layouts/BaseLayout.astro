@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+const { title = 'Archives CSA', description = 'Archives de l\u2019Agence Spatiale Canadienne' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const nav = [
+  { href: 'programmes', label: 'Programmes' },
+  { href: 'missions', label: 'Missions' },
+  { href: 'lanceurs', label: 'Lanceurs' },
+  { href: 'vaisseaux', label: 'Vaisseaux' },
+  { href: 'equipage', label: 'Équipage' },
+  { href: 'conseil', label: 'Conseil' },
+];
+function url(p) { return (base.endsWith('/') ? base : base + '/') + p; }
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} — Archives CSA</title>
+  <meta name="description" content={description} />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href={base}>
+        <span class="leaf">&#x1F341;</span>
+        <span>CSA<span class="full">&nbsp;&nbsp;ARCHIVES — AGENCE SPATIALE CANADIENNE</span></span>
+      </a>
+      <nav class="site-nav">
+        {nav.map((n) => <a href={url(n.href)}>{n.label}</a>)}
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span>CSA — DOCUMENT D'ARCHIVE INTERNE</span>
+      <span>CLASSIFICATION : USAGE OPÉRATIONNEL · NE PAS DIFFUSER HORS AGENCE</span>
+    </div>
+  </footer>
+</body>
+</html>

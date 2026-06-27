@@ -1,0 +1,11 @@
+---
+// Rend un lien croisé si `to` (collection) + `slug` sont fournis, sinon
+// un simple texte. Permet de préparer des références dont la page n'existe
+// pas encore (le lien sera ajouté plus tard sans toucher au reste).
+import { ref as refUrl } from '../lib/url.ts';
+const { label, to, slug, plain = false } = Astro.props;
+const href = to && slug ? refUrl(to, slug) : null;
+---
+{href
+  ? <a class={`ref${plain ? ' ref--plain' : ''}`} href={href}>{label}</a>
+  : <span class={plain ? 'ref--plain' : ''}>{label}</span>}

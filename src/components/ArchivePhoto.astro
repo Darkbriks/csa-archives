@@ -1,0 +1,35 @@
+---
+// Cadre photo d'archive. Affiche l'image si `src` est fourni, sinon un
+// placeholder « image à verser au dossier ». `kind` change l'icône.
+import { asset } from '../lib/url.ts';
+const { src, caption, ref, aspect = '4 / 3', kind = 'photo' } = Astro.props;
+const url = asset(src);
+
+const icons = {
+  portrait: '<circle cx="24" cy="18" r="9"/><path d="M9 41c2-9 9-13 15-13s13 4 15 13"/>',
+  pad: '<path d="M24 6l8 14v12H16V20z"/><path d="M16 32l-6 10h28l-6-10"/><path d="M24 42v4"/>',
+  flight: '<path d="M6 30c10-2 18-10 36-22"/><path d="M30 8h12v12"/><circle cx="14" cy="34" r="3"/>',
+  photo: '<rect x="6" y="12" width="36" height="26" rx="2"/><circle cx="24" cy="25" r="7"/><path d="M14 12l3-5h14l3 5"/>',
+};
+---
+<figure class="archive-photo" style={`--aspect:${aspect}`}>
+  <div class="archive-photo__frame">
+    {url
+      ? <img src={url} alt={caption ?? ''} loading="lazy" />
+      : (
+        <div class="archive-photo__placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"
+               set:html={icons[kind] ?? icons.photo} />
+          <span>Image à verser au dossier</span>
+        </div>
+      )}
+  </div>
+  {(caption || ref) && (
+    <figcaption>
+      <span>{caption}</span>
+      {ref && <span>{ref}</span>}
+    </figcaption>
+  )}
+</figure>

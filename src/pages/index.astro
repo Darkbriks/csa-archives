@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { ref as refUrl } from '../lib/url.ts';
+function url(p) { return refUrl(p, ''); }
+
+const missions = await getCollection('missions');
+const equipage = await getCollection('equipage');
+const habites = missions.filter((m) => m.data.habite).length;
+const perdus = 0; // mis à jour à la main en cas de perte d'équipage
+
+const sections = [
+  { href: 'programmes', code: 'PRG', label: 'Programmes', desc: 'Kiviuq, Champlain, Aurora, Alouette, Inukshuk…' },
+  { href: 'missions',   code: 'MSN', label: 'Missions',   desc: 'Comptes rendus de vol, succès et échecs.' },
+  { href: 'lanceurs',   code: 'LNR', label: 'Lanceurs',   desc: 'Familles Winnipeg, Ottawa, et au-delà.' },
+  { href: 'vaisseaux',  code: 'VHC', label: 'Vaisseaux',  desc: 'Capsules, sondes, étages, modules.' },
+  { href: 'equipage',   code: 'EQP', label: 'Équipage',   desc: 'États de service des kerbonautes.' },
+  { href: 'conseil',    code: 'CSL', label: 'Conseil',    desc: 'Sessions et décisions du conseil d\u2019administration.' },
+];
+---
+<BaseLayout title="Accueil">
+  <!-- Hero : entrée des archives -->
+  <section class="sheet" style="padding-top:3.5rem; padding-bottom:1rem;">
+    <p class="eyebrow">Archives centrales · Accès opérationnel</p>
+    <h1 style="max-width:16ch; margin-top:0.5rem;">Agence Spatiale Canadienne</h1>
+    <p class="muted" style="max-width:58ch; font-size:1.1rem; margin-top:0.9rem;">
+      Le registre permanent de l'agence : chaque lanceur, chaque mission, chaque
+      kerbal envoyé là où aucun n'était allé. Tenu à jour dossier après dossier.
+    </p>
+
+    <!-- bandeau de données -->
+    <div class="datapanel" style="margin-top:2rem;">
+      <div class="datapanel__head"><span>Synthèse agence</span><span>ÉTAT COURANT</span></div>
+      <div class="datapanel__body" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;">
+        <div><div class="mono tiny muted">Missions au registre</div><div style="font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:var(--red);">{missions.length}</div></div>
+        <div><div class="mono tiny muted">Vols habités</div><div style="font-family:var(--font-display); font-size:1.8rem; font-weight:700;">{habites}</div></div>
+        <div><div class="mono tiny muted">Kerbals perdus</div><div style="font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:var(--green);">{perdus}</div></div>
+        <div><div class="mono tiny muted">Exercice courant</div><div style="font-family:var(--font-display); font-size:1.8rem; font-weight:700;">K-03</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <section class="sheet">
+    <div class="section-label">Sections d'archive</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:1rem;">
+      {sections.map((s) => (
+        <a href={url(s.href)} class="datapanel" style="display:block; text-decoration:none; color:inherit;">
+          <div class="datapanel__body">
+            <div class="mono tiny" style="color:var(--red); letter-spacing:0.12em;">{s.code}</div>
+            <div style="font-family:var(--font-display); font-weight:600; font-size:1.25rem; margin:0.2rem 0 0.3rem;">{s.label}</div>
+            <div class="muted tiny">{s.desc}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <p class="tiny muted mono" style="margin-top:2rem;">
+      Dossier d'exemple disponible : <a href={url('vaisseaux/champlain-i')}>CSA-HSV-CHAMPLAIN-I</a>
+    </p>
+  </section>
+</BaseLayout>
