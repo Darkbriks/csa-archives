@@ -4,7 +4,7 @@ ref: CSA-EQP-V-KERMAN
 specialite: Pilote
 statut: Active
 statutTon: nominal
-niveau: 2
+niveau: 1
 resume: >-
   Pilote en chef de l'agence et première kerbale de l'histoire à atteindre
   l'orbite puis à sortir dans le vide spatial. Choisie pour les missions

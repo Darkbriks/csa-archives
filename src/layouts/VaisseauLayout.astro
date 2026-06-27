@@ -8,6 +8,7 @@ import ArchivePhoto from '../components/ArchivePhoto.astro';
 import Connexions from '../components/Connexions.astro';
 import FlightHistory from '../components/FlightHistory.astro';
 import CahierDesCharges from '../components/CahierDesCharges.astro';
+import Timeline from '../components/Timeline.astro';
 import { ref as refUrl } from '../lib/url.ts';
 
 const { item, flights = [] } = Astro.props;
@@ -47,6 +48,9 @@ const specRows = [
           {specRows.map(([k, v]) => <div class="datarow"><dt>{k}</dt><dd>{v}</dd></div>)}
           {d.lanceur && (
             <div class="datarow"><dt>Lanceur</dt><dd><RefLink label={d.lanceur.label} to={d.lanceur.to} slug={d.lanceur.slug} /></dd></div>
+          )}
+          {d.deployePar && (
+            <div class="datarow"><dt>Déployé par</dt><dd><RefLink label={d.deployePar.label} to={d.deployePar.to} slug={d.deployePar.slug} /></dd></div>
           )}
         </dl>
       </DataPanel>
@@ -101,12 +105,7 @@ const specRows = [
     {d.sequence.length > 0 && (
       <section>
         <SectionLabel label="Séquence propre au vaisseau" />
-        <ol class="stages">{d.sequence.map((e) => (
-          <li class="stage">
-            <div class="stage__id">{e.id}<small>phase</small></div>
-            <div><div class="stage__desc"><strong>{e.titre}</strong></div>{e.detail && <div class="stage__parts">{e.detail}</div>}</div>
-          </li>
-        ))}</ol>
+        <Timeline steps={d.sequence} idLabel="phase" />
       </section>
     )}
 
@@ -116,6 +115,17 @@ const specRows = [
         <div class="photo-strip">
           {d.photosVol.map((ph) => <ArchivePhoto src={ph.src} caption={ph.caption} ref={ph.ref} aspect="4 / 3" kind={ph.kind ?? 'flight'} />)}
         </div>
+      </section>
+    )}
+
+    {d.transporte.length > 0 && (
+      <section>
+        <SectionLabel label="Charge transportée" />
+        <DataPanel>
+          <dl style="margin:0;">{d.transporte.map((c) => (
+            <div class="datarow"><dt>Élément</dt><dd><RefLink label={c.label} to={c.to} slug={c.slug} /></dd></div>
+          ))}</dl>
+        </DataPanel>
       </section>
     )}
 
@@ -132,6 +142,8 @@ const specRows = [
     <Connexions items={[
       d.programme && { kind: 'Programme', ...d.programme },
       d.lanceur && { kind: 'Lanceur', ...d.lanceur },
+      d.deployePar && { kind: 'Déployé par', ...d.deployePar },
+      ...d.transporte.map((c) => ({ kind: 'Transporte', ...c })),
     ].filter(Boolean)} />
 
     <p class="tiny muted mono" style="margin-top:2rem;">

@@ -13,7 +13,7 @@ lanceur:   { label: "Ottawa I-2", to: "lanceurs", slug: "ottawa-i-2" }
 charge:    { label: "Champlain I", to: "vaisseaux", slug: "champlain-i" }
 equipage:
   - { label: "Valentina Kerman", to: "equipage", slug: "valentina-kerman" }
-  - { label: "Erganne Kerman" }
+  - { label: "Erganne Kerman", to: "equipage", slug: "erganne-kerman" }
 objectifs:
   - "Réaliser la première sortie extravéhiculaire de l'agence"
   - "Exploiter le module de service scientifique étendu"

@@ -564,3 +564,64 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* Nav précédent/suivant */
 .prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
 .prevnext a { font-family: var(--font-mono); font-size: 0.78rem; color: var(--slate); }
+
+/* ============================================================
+   v4 — Cahier des charges (comparaison prévu / livré)
+   ============================================================ */
+.cdc-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.cdc-table th {
+  text-align: left; font-family: var(--font-mono); font-weight: 600;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); padding: 0.4rem 0.7rem; border-bottom: 1.5px solid var(--rule-strong);
+}
+.cdc-table td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.cdc-table tr:last-child td { border-bottom: none; }
+.cdc-table .crit { font-weight: 600; }
+.cdc-table .cible { font-family: var(--font-mono); color: var(--ink-2); }
+.cdc-table .livre { font-family: var(--font-mono); font-weight: 500; }
+.cdc-table .livre.ok   { color: var(--green); }
+.cdc-table .livre.diff { color: var(--amber); }
+.cdc-table .livre.none { color: var(--ink-3); font-style: italic; font-weight: 400; }
+
+/* ============================================================
+   v5 — Frise unifiee (temps optionnel)
+   ============================================================ */
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline__item {
+  position: relative;
+  padding: 0 0 1rem 1.75rem;
+}
+/* trait vertical */
+.timeline__item::before {
+  content: ""; position: absolute; left: 7px; top: 16px; bottom: -4px;
+  width: 2px; background: var(--rule-strong);
+}
+.timeline__item:last-child::before { display: none; }
+/* pastille */
+.timeline__item::after {
+  content: ""; position: absolute; left: 0; top: 5px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--paper); border: 2.5px solid var(--red);
+}
+/* variante chronometree : gouttiere de temps a gauche */
+.timeline--timed .timeline__item { padding-left: 6rem; }
+.timeline--timed .timeline__item::before { left: calc(4.5rem + 7px); }
+.timeline--timed .timeline__item::after  { left: 4.5rem; }
+.timeline__marker { display: none; }
+.timeline--timed .timeline__marker {
+  display: block; position: absolute; left: 0; top: 2px;
+  width: 4rem; text-align: right;
+}
+.timeline__t {
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  color: var(--red); letter-spacing: 0.02em; white-space: nowrap;
+}
+.timeline__t--none { color: var(--ink-3); font-weight: 400; }
+.timeline__content { }
+.timeline__head { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.timeline__title { font-weight: 600; font-size: 0.96rem; }
+.timeline__id {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.timeline__detail { font-size: 0.9rem; color: var(--ink-2); margin-top: 0.15rem; }

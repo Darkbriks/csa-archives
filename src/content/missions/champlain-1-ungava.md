@@ -13,7 +13,7 @@ lanceur:   { label: "Ottawa I-2", to: "lanceurs", slug: "ottawa-i-2" }
 charge:    { label: "Champlain I", to: "vaisseaux", slug: "champlain-i" }
 equipage:
   - { label: "Valentina Kerman", to: "equipage", slug: "valentina-kerman" }
-  - { label: "Casgarde Kerman" }
+  - { label: "Casgarde Kerman", to: "equipage", slug: "casgarde-kerman" }
 objectifs:
   - "Placer un équipage en orbite et le ramener sain et sauf"
   - "Vérifier les systèmes de vie et de bord en conditions habitées"

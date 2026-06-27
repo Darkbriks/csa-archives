@@ -20,12 +20,12 @@ etagesDetail:
   - { nom: "Premier étage — 3 cœurs", ergols: "Kérosène / oxygène liquide", detail: "Cœur central à poussée réduite, deux cœurs latéraux à pleine poussée largués les premiers." }
   - { nom: "Étage supérieur", ergols: "Ergols stockables (allumages multiples)", detail: "Étage de mise en orbite ; désorbité en fin de mission pour ne pas polluer l'orbite." }
 ascension:
-  - { id: "S1", titre: "Décollage", detail: "Allumage simultané des trois cœurs." }
-  - { id: "S2", titre: "Libération des mâts", detail: "Désancrage du pas de tir mobile." }
-  - { id: "S3", titre: "Largage des cœurs latéraux", detail: "Séparation des deux cœurs d'appoint une fois leurs ergols épuisés." }
+  - { t: "T−3 s", id: "S1", titre: "Allumage des moteurs", detail: "Montée en poussée des trois cœurs et vérification santé avant largage." }
+  - { t: "T+0", id: "S2", titre: "Décollage — libération des mâts", detail: "Désancrage du pas de tir mobile, les trois cœurs à pleine poussée." }
+  - { id: "S3", titre: "Largage des cœurs latéraux", detail: "Séparation des deux cœurs d'appoint une fois leurs ergols épuisés (instant fonction de la charge)." }
   - { id: "S4", titre: "Séparation du cœur central", detail: "Largage du premier étage." }
-  - { id: "S5", titre: "Largage de la coiffe", detail: "Exposition de la charge utile." }
-  - { id: "S6", titre: "Allumage de l'étage supérieur", detail: "Mise en orbite de la charge utile." }
+  - { id: "S5", titre: "Largage de la coiffe", detail: "Dès la traversée des couches denses (altitude dépendante du profil)." }
+  - { id: "S6", titre: "Allumage de l'étage supérieur", detail: "Séquence de mise en orbite fonction de l'orbite visée." }
   - { id: "S7", titre: "Séparation de la charge utile", detail: "Libération du vaisseau ou de la sonde sur l'orbite visée." }
 perfs:
   - { label: "Charge utile en orbite basse", valeur: "5 t (démontré)" }

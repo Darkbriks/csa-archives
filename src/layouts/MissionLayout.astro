@@ -6,6 +6,7 @@ import SectionLabel from '../components/SectionLabel.astro';
 import RefLink from '../components/RefLink.astro';
 import ArchivePhoto from '../components/ArchivePhoto.astro';
 import Connexions from '../components/Connexions.astro';
+import Timeline from '../components/Timeline.astro';
 import { ref as refUrl } from '../lib/url.ts';
 
 const { item } = Astro.props;
@@ -68,13 +69,7 @@ const fiche = [
     {d.journal.length > 0 && (
       <section>
         <SectionLabel label="Journal de bord" />
-        <ul class="journal">{d.journal.map((j) => (
-          <li>
-            {j.t && <div class="j-t">{j.t}</div>}
-            <div class="j-title">{j.titre}</div>
-            {j.detail && <div class="j-detail">{j.detail}</div>}
-          </li>
-        ))}</ul>
+        <Timeline steps={d.journal} />
       </section>
     )}
 

@@ -15,6 +15,18 @@ const image = z.object({
 });
 const statutTon = z.enum(['nominal', 'lost', 'slate', 'red']).default('red');
 
+// Cahier des charges : exigences d'origine + comparaison prévu / livré.
+const cahier = z.object({
+  reference: z.string().optional(),
+  contexte: z.string().optional(),
+  exigences: z.array(z.string()).default([]),
+  comparaison: z.array(z.object({
+    critere: z.string(),
+    cible: z.string(),
+    livre: z.string().optional(),
+  })).default([]),
+}).optional();
+
 /* ---------- VAISSEAUX ---------- */
 const vaisseaux = defineCollection({
   type: 'content',
@@ -23,6 +35,8 @@ const vaisseaux = defineCollection({
     resume: z.string(),
     programme: refItem.optional(),
     lanceur: refItem.optional(),
+    deployePar: refItem.optional(),
+    transporte: z.array(refItem).default([]),
     equipage: z.number().optional(),
     specs: z.object({
       masse: z.string().optional(), masseVide: z.string().optional(), taille: z.string().optional(),
@@ -30,8 +44,9 @@ const vaisseaux = defineCollection({
     }).default({}),
     composition: z.array(z.object({ qty: z.number().optional(), nom: z.string(), role: z.string().optional() })).default([]),
     sousSystemes: z.array(z.object({ role: z.string(), detail: z.string() })).default([]),
-    sequence: z.array(z.object({ id: z.string(), titre: z.string(), detail: z.string().optional() })).default([]),
+    sequence: z.array(z.object({ t: z.string().optional(), id: z.string().optional(), titre: z.string(), detail: z.string().optional() })).default([]),
     perfs: z.array(perfItem).default([]),
+    cahierDesCharges: cahier,
     photo: image.optional(),
     photosVol: z.array(image).default([]),
   }),
@@ -48,9 +63,10 @@ const lanceurs = defineCollection({
       diametre: z.string().optional(), premierVol: z.string().optional(), volsReussis: z.string().optional(),
     }).default({}),
     etagesDetail: z.array(z.object({ nom: z.string(), ergols: z.string().optional(), detail: z.string().optional() })).default([]),
-    ascension: z.array(z.object({ id: z.string(), titre: z.string(), detail: z.string().optional() })).default([]),
+    ascension: z.array(z.object({ t: z.string().optional(), id: z.string().optional(), titre: z.string(), detail: z.string().optional() })).default([]),
     perfs: z.array(perfItem).default([]),
     chargesCertifiees: z.array(refItem).default([]),
+    cahierDesCharges: cahier,
     photo: image.optional(),
     photosVol: z.array(image).default([]),
   }),
@@ -100,7 +116,7 @@ const missions = defineCollection({
     equipage: z.array(refItem).default([]),
     objectifs: z.array(z.string()).default([]),
     metriques: z.array(perfItem).default([]),   // orbite, durée, G, science…
-    journal: z.array(z.object({ t: z.string().optional(), titre: z.string(), detail: z.string().optional() })).default([]),
+    journal: z.array(z.object({ t: z.string().optional(), id: z.string().optional(), titre: z.string(), detail: z.string().optional() })).default([]),
     anomalies: z.array(z.string()).default([]),
     photo: image.optional(),
     photosVol: z.array(image).default([]),

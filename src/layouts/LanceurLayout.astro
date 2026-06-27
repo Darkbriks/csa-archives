@@ -8,6 +8,7 @@ import ArchivePhoto from '../components/ArchivePhoto.astro';
 import Connexions from '../components/Connexions.astro';
 import FlightHistory from '../components/FlightHistory.astro';
 import CahierDesCharges from '../components/CahierDesCharges.astro';
+import Timeline from '../components/Timeline.astro';
 import { ref as refUrl } from '../lib/url.ts';
 
 const { item, flights = [] } = Astro.props;
@@ -71,12 +72,7 @@ const specRows = [
     {d.ascension.length > 0 && (
       <section>
         <SectionLabel label="Séquence d'ascension" />
-        <ol class="stages">{d.ascension.map((e) => (
-          <li class="stage">
-            <div class="stage__id">{e.id}<small>étage</small></div>
-            <div><div class="stage__desc"><strong>{e.titre}</strong></div>{e.detail && <div class="stage__parts">{e.detail}</div>}</div>
-          </li>
-        ))}</ol>
+        <Timeline steps={d.ascension} idLabel="étape" />
       </section>
     )}
 

@@ -1,0 +1,26 @@
+---
+// Frise verticale. Chaque étape : { t?, id?, titre, detail? }.
+// `t` (temps, ex. "T+0", "T−3 s") s'affiche en évidence quand il est présent ;
+// `id` (ex. "S1", "P2") en repère secondaire. Les deux sont optionnels — une
+// étape dépendante du profil de mission peut n'avoir ni l'un ni l'autre.
+const { steps = [], idLabel } = Astro.props;
+const hasAnyTime = steps.some((s) => s.t);
+---
+<ol class={`timeline${hasAnyTime ? ' timeline--timed' : ''}`}>
+  {steps.map((s) => (
+    <li class="timeline__item">
+      <div class="timeline__marker">
+        {s.t
+          ? <span class="timeline__t">{s.t}</span>
+          : <span class="timeline__t timeline__t--none" aria-hidden="true">·</span>}
+      </div>
+      <div class="timeline__content">
+        <div class="timeline__head">
+          <span class="timeline__title">{s.titre}</span>
+          {s.id && <span class="timeline__id">{s.id}{idLabel ? ` · ${idLabel}` : ''}</span>}
+        </div>
+        {s.detail && <div class="timeline__detail">{s.detail}</div>}
+      </div>
+    </li>
+  ))}
+</ol>
