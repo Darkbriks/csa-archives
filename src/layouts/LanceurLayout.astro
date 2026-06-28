@@ -14,6 +14,13 @@ import { ref as refUrl } from '../lib/url.ts';
 const { item, flights = [] } = Astro.props;
 const d = item.data;
 
+// Nombre de lancements dérivé des missions qui référencent ce lanceur.
+const launchCount = flights.length;
+const successCount = flights.filter((f) => f.data.statutTon === 'nominal').length;
+const lancementsValeur = launchCount > 0
+  ? `${launchCount} lancement${launchCount > 1 ? 's' : ''} · ${successCount} réussi${successCount > 1 ? 's' : ''}`
+  : (d.specs.volsReussis ?? null);
+
 const specRows = [
   ['Classe', d.classe],
   ['Famille', d.famille],
@@ -22,7 +29,7 @@ const specRows = [
   ['Étages', d.specs.etages],
   ['Masse au décollage', d.specs.masseDecollage],
   ['Premier vol', d.specs.premierVol],
-  ['Vols réussis', d.specs.volsReussis],
+  ['Lancements', lancementsValeur],
 ].filter(([, v]) => v != null && v !== '');
 ---
 <BaseLayout title={d.title} description={d.resume}>
