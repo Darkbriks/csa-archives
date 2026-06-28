@@ -28,7 +28,7 @@ journal:
   - { t: "T+0", titre: "Ascension nominale", detail: "Réduction de poussée active, G ≤ 2,5. Insertion à 250 km." }
   - { t: "Orbites 1–5", titre: "Vérifications de bord", detail: "Systèmes, manœuvres RCS, transmissions, premier repas en apesanteur." }
   - { t: "Orbite 5", titre: "Changement d'orbite", detail: "Deux manœuvres au moteur du module de service ; orbite abaissée à 150 km." }
-  - { t: "Orbites 6–10", titre: "Programme scientifique", detail: "Mesures à la nouvelle altitude." }
+  - { titre: "Programme scientifique", detail: "Mesures à la nouvelle altitude." }
   - { t: "Rentrée", titre: "Retour & amerrissage", detail: "Nouvel angle validé, trajectoire fluide, équipage récupéré sain et sauf." }
 precedente: { label: "Champlain Q1", to: "missions", slug: "champlain-q1" }
 suivante:   { label: "Champlain 2 — Selkirk", to: "missions", slug: "champlain-2-selkirk" }

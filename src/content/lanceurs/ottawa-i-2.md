@@ -10,28 +10,27 @@ resume: >-
   Lanceur moyen de référence de l'agence.
 famille: Ottawa
 specs:
-  hauteur: "≈ 21,8 m"
+  hauteur: "21,8 m"
   diametre: "1,875 m (cœur)"
   etages: "2 (3 cœurs au 1er étage + étage supérieur)"
-  masseDecollage: "≈ 135 t (config de référence)"
+  masseDecollage: "≈ 103 t (config de référence à vide)"
   premierVol: "Exercice K-02"
   volsReussis: "Plusieurs (dont la qualification et les vols Champlain)"
 etagesDetail:
-  - { nom: "Premier étage — 3 cœurs", ergols: "Kérosène / oxygène liquide", detail: "Cœur central à poussée réduite, deux cœurs latéraux à pleine poussée largués les premiers." }
-  - { nom: "Étage supérieur", ergols: "Ergols stockables (allumages multiples)", detail: "Étage de mise en orbite ; désorbité en fin de mission pour ne pas polluer l'orbite." }
+  - { nom: "Premier étage — 3 cœurs", ergols: "Kérosène (3 x 12.4 t) / oxygène liquide (3 x 15.1 t)", detail: "Cœur central à poussée réduite, deux cœurs latéraux à pleine poussée largués les premiers." }
+  - { nom: "Étage supérieur", ergols: "Kérosène (0.86 t) / oxygène liquide (1 t)", detail: "Étage de mise en orbite ; désorbité en fin de mission pour ne pas polluer l'orbite." }
 ascension:
   - { t: "T−3 s", id: "S1", titre: "Allumage des moteurs", detail: "Montée en poussée des trois cœurs et vérification santé avant largage." }
   - { t: "T+0", id: "S2", titre: "Décollage — libération des mâts", detail: "Désancrage du pas de tir mobile, les trois cœurs à pleine poussée." }
-  - { id: "S3", titre: "Largage des cœurs latéraux", detail: "Séparation des deux cœurs d'appoint une fois leurs ergols épuisés (instant fonction de la charge)." }
-  - { id: "S4", titre: "Séparation du cœur central", detail: "Largage du premier étage." }
+  - { t: "T+2 min 30 s", id: "S3", titre: "Largage des cœurs latéraux", detail: "Séparation des deux cœurs d'appoint une fois leurs ergols épuisés (instant fonction de la charge)." }
+  - { t: "T+2 min 56 s", id: "S4", titre: "Séparation du cœur central", detail: "Largage du premier étage." }
   - { id: "S5", titre: "Largage de la coiffe", detail: "Dès la traversée des couches denses (altitude dépendante du profil)." }
   - { id: "S6", titre: "Allumage de l'étage supérieur", detail: "Séquence de mise en orbite fonction de l'orbite visée." }
   - { id: "S7", titre: "Séparation de la charge utile", detail: "Libération du vaisseau ou de la sonde sur l'orbite visée." }
 perfs:
-  - { label: "Charge utile en orbite basse", valeur: "5 t (démontré)" }
-  - { label: "Charge utile à 1 000 km" }
-  - { label: "Δv total (à vide)" }
-  - { label: "TWR au décollage" }
+  - { label: "Charge utile en LEO", valeur: "5 t" }
+  - { label: "Charge utile en GTO" }
+  - { label: "TWR au décollage (à vide/charge maximale)", valeur: "1,3 / 1.2" }
 chargesCertifiees:
   - { label: "Champlain I", to: "vaisseaux", slug: "champlain-i" }
 photo:

@@ -32,8 +32,14 @@ perfs:
   - { label: "Δv total (à vide)" }
   - { label: "TWR au décollage" }
 photo:
+  src: "/images/lanceurs/ottawa-i-4/lp.png"
   caption: "Ottawa I-4 sur le pas de tir"
   kind: pad
+photosVol:
+  - { src: "images/lanceurs/ottawa-i-4/vol-1.png", caption: "Vue depuis le VAB lors du décollage de l'Ottawa I-4", kind: flight }
+  - { src: "images/lanceurs/ottawa-i-4/vol-2.png", caption: "Vue du décollage depuis une caméra embarquée sur le second étage", kind: flight }
+  - { src: "images/lanceurs/ottawa-i-4/vol-3.png", caption: "Image d'un lancement de l'Ottawa I-4 lors d'un lever de soleil", kind: flight }
+  - { src: "images/lanceurs/ottawa-i-4/vol-4.png", caption: "Vue de la séparation des cœurs d'appoint depuis le cœur central", kind: flight }
 ---
 
 ## Conception

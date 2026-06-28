@@ -22,6 +22,7 @@ missions:
   - { label: "Champlain 1 — Ungava", to: "missions", slug: "champlain-1-ungava" }
   - { label: "Champlain 2 — Selkirk", to: "missions", slug: "champlain-2-selkirk" }
 photo:
+  src: "/images/equipage/Val.png"
   caption: "V. Kerman — dossier d'équipage"
   kind: portrait
 ---

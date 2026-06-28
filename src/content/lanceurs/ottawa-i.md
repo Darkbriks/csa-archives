@@ -10,28 +10,28 @@ resume: >-
   supérieur léger. Cheval de bataille des petites charges utiles.
 famille: Ottawa
 specs:
-  hauteur: "≈ 21,8 m"
+  hauteur: "21,8 m"
   diametre: "1,875 m (cœur)"
   etages: "2 (cœur + étage supérieur) + 2 propulseurs d'appoint"
-  masseDecollage: "≈ 51 t (config de référence)"
+  masseDecollage: "48.3 t (config de référence à vide)"
   premierVol: "Exercice K-02"
   volsReussis: "Plusieurs"
 etagesDetail:
-  - { nom: "Appoint au décollage", ergols: "Poudre (solide)", detail: "Deux propulseurs latéraux fournissant la poussée d'appoint nécessaire au décollage, largués tôt dans le vol." }
-  - { nom: "Premier étage — cœur", ergols: "Kérosène / oxygène liquide", detail: "Cœur principal assurant l'essentiel de l'ascension." }
-  - { nom: "Étage supérieur", ergols: "Ergols stockables (allumages multiples)", detail: "Étage léger de mise en orbite et de circularisation ; désorbité en fin de mission." }
+  - { nom: "Appoint au décollage", ergols: "Poudre (9.8 t)", detail: "Deux propulseurs latéraux fournissant la poussée d'appoint nécessaire au décollage." }
+  - { nom: "Premier étage — cœur", ergols: "Kérosène (12.4 t) / oxygène liquide (15.1 t)", detail: "Cœur principal assurant l'essentiel de l'ascension." }
+  - { nom: "Étage supérieur", ergols: "Kérosène (0.86 t) / oxygène liquide (1 t)", detail: "Étage léger de mise en orbite et de circularisation ; désorbité en fin de mission." }
 ascension:
-  - { id: "S1", titre: "Décollage", detail: "Allumage du cœur et des deux propulseurs d'appoint." }
-  - { id: "S2", titre: "Largage des propulseurs d'appoint", detail: "Séparation des deux moteurs à poudre épuisés." }
-  - { id: "S3", titre: "Séparation du cœur principal", detail: "Largage du premier étage." }
-  - { id: "S4", titre: "Largage de la coiffe", detail: "Exposition de la charge utile une fois hors de l'atmosphère dense." }
-  - { id: "S5", titre: "Allumage de l'étage supérieur", detail: "Mise en orbite et circularisation." }
-  - { id: "S6", titre: "Séparation de la charge utile", detail: "Libération sur l'orbite visée." }
+  - { t: "T−3 s", id: "S1", titre: "Allumage du moteur principal", detail: "Mise à feu du cœur principal, vérification des paramètres de poussée et de pression." }
+  - { t: "T+0", id: "S2", titre: "Décollage", detail: "Allumage des propulseurs d'appoint, ouverture des pinces de maintien." }
+  - { t: "T+70 s", id: "S3", titre: "Largage des propulseurs d'appoint", detail: "Séparation des deux moteurs à poudre épuisés." }
+  - { t: "T+2 min 30 s", id: "S4", titre: "Séparation du cœur principal", detail: "Largage du premier étage." }
+  - { id: "S5", titre: "Largage de la coiffe", detail: "Exposition de la charge utile une fois hors de l'atmosphère dense." }
+  - { id: "S6", titre: "Allumage de l'étage supérieur", detail: "Mise en orbite et circularisation." }
+  - { id: "S7", titre: "Séparation de la charge utile", detail: "Libération sur l'orbite visée." }
 perfs:
-  - { label: "Charge utile en orbite basse", valeur: "2 t (démontré)" }
-  - { label: "Charge utile à 1 000 km", valeur: "1 t (démontré)" }
-  - { label: "Δv total (à vide)" }
-  - { label: "TWR au décollage" }
+  - { label: "Charge utile LEO", valeur: "2 t" }
+  - { label: "Charge utile GTO", valeur: "0.5 t" }
+  - { label: "TWR au décollage (à vide/charge maximale)", valeur: "1,65 / 1.6" }
 photo:
   caption: "Ottawa I sur le pas de tir"
   kind: pad
