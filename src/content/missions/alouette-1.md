@@ -26,7 +26,7 @@ journal:
   - { titre: "Retombée & désintégration", detail: "Faute de bouclier et de parachute, la sonde se désintègre à ≈ 850 km du pas de tir." }
 anomalies:
   - "Charge utile non récupérable : technologies de bouclier et de parachute non encore disponibles."
-suivante: { label: "Alouette 2", to: "missions", slug: "alouette-2" }
+suivante: { label: "Alouette 2-Q1", to: "missions", slug: "alouette-2-q1" }
 photo: { caption: "Alouette 1 — ascension", kind: flight }
 ---
 

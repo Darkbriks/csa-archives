@@ -18,7 +18,6 @@ distinctions:
   - "Aucune distinction au dossier"
   - "Plusieurs notes d'incident (voir ci-dessous)"
 photo:
-  src: "/images/equipage/Jeb.png"
   caption: "J. Kerman — dossier d'équipage"
   kind: portrait
 ---
@@ -49,4 +48,4 @@ de toute activité opérationnelle pour l'exercice K-03, et l'a redirigé vers
 l'équipe **Projets Spéciaux**, où son énergie est canalisée sous supervision
 permanente. Une enquête interne cherche par ailleurs à identifier qui a validé
 son recrutement initial. Réévaluation prévue en K-04 — le compteur d'incidents
-devra rester à zéro d'ici là.
+devra rester à zéro d'ici là. 🖍️

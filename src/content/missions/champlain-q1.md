@@ -33,7 +33,7 @@ journal:
 anomalies:
   - "Palier de rentrée entre 40 et 45 km : angle d'entrée trop faible, corrigé sur Champlain 1 (Pe abaissé)."
   - "Incident câble (interruption télémétrie) : recrutement d'un personnel d'encadrement décidé par le Conseil."
-suivante: { label: "Champlain 1 — Ungava", to: "missions", slug: "champlain-1-ungava" }
+suivante: { label: "Champlain Q2 — Abandon au pas de tir", to: "missions", slug: "champlain-q2" }
 photo: { caption: "Champlain Q1 — rentrée", kind: flight }
 ---
 

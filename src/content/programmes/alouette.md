@@ -16,15 +16,18 @@ materiel:
   - { label: "Sonde Explorer", to: "vaisseaux", slug: "sonde-explorer" }
   - { label: "Sonde Keyhole", to: "vaisseaux", slug: "sonde-keyhole" }
   - { label: "Sonde Nimbus", to: "vaisseaux", slug: "sonde-nimbus" }
+  - { label: "Sonde Mariner", to: "vaisseaux", slug: "sonde-mariner" }
   - { label: "Winnipeg I", to: "lanceurs", slug: "winnipeg-i" }
   - { label: "Winnipeg II", to: "lanceurs", slug: "winnipeg-ii" }
   - { label: "Winnipeg III", to: "lanceurs", slug: "winnipeg-iii" }
 jalons:
-  - { date: "K-01", titre: "Alouette 1 — acte fondateur", detail: "Première mission de l'agence ; franchissement de la ligne de Kerman.", statut: "Succès" }
-  - { date: "K-01", titre: "Alouette 2 — première récupération", detail: "Cœur de sonde récupéré intact après séjour dans l'espace.", statut: "Succès" }
-  - { date: "K-01", titre: "Alouette 3 — premier vol orbital", detail: "Premier objet de l'agence durablement en orbite.", statut: "Succès" }
-  - { date: "K-02", titre: "Alouette 4 — orbite stationnaire", detail: "Première mise à poste géostationnaire.", statut: "Succès" }
-  - { date: "K-02", titre: "Alouette 5 — orbite polaire", detail: "Balayage global ; incident de comptage mémorable.", statut: "Succès" }
+  - { date: "K-01", titre: "Alouette I — acte fondateur", detail: "Première mission de l'agence ; franchissement de la ligne de Kerman.", statut: "Succès" }
+  - { date: "K-01", titre: "Alouette II-Q1 — qualification du cœur récupérable", detail: "Cœur Keyhole éprouvé sur Winnipeg I avant Alouette II.", statut: "Succès" }
+  - { date: "K-01", titre: "Alouette II — première récupération", detail: "Cœur de sonde récupéré intact après séjour dans l'espace.", statut: "Succès" }
+  - { date: "K-01", titre: "Alouette III — premier vol orbital", detail: "Premier objet de l'agence durablement en orbite.", statut: "Succès" }
+  - { date: "K-02", titre: "Ottawa I Q1 — sonde Mariner (Alouette III-Bis)", detail: "Sonde interplanétaire d'essai sur orbite très elliptique.", statut: "Succès" }
+  - { date: "K-02", titre: "Alouette IV — orbite stationnaire", detail: "Première mise à poste géostationnaire.", statut: "Succès" }
+  - { date: "K-02", titre: "Alouette V — orbite polaire", detail: "Balayage global ; incident de comptage mémorable.", statut: "Succès" }
 ---
 
 ## Esprit du programme

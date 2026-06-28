@@ -26,7 +26,7 @@ journal:
   - { titre: "Séjour dans l'espace", detail: "Une douzaine de minutes au-dessus de la ligne de Kerman, collecte de données." }
   - { titre: "Séparation du cœur", detail: "Peu avant la rentrée, le cœur protégé se détache du reste de la structure." }
   - { titre: "Rentrée & récupération", detail: "Rentrée nominale sous bouclier puis parachute ; récupération intacte à plus de 1 800 km du pas de tir." }
-precedente: { label: "Alouette 1", to: "missions", slug: "alouette-1" }
+precedente: { label: "Alouette 2-Q1", to: "missions", slug: "alouette-2-q1" }
 suivante:   { label: "Alouette 3", to: "missions", slug: "alouette-3" }
 photo: { caption: "Récupération du cœur Keyhole", kind: flight }
 ---

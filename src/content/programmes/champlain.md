@@ -15,10 +15,13 @@ objectifs:
   - "Préparer les compétences nécessaires aux futures missions lunaires habitées"
 materiel:
   - { label: "Champlain I", to: "vaisseaux", slug: "champlain-i" }
+  - { label: "Capsule Victoria", to: "vaisseaux", slug: "capsule-victoria" }
   - { label: "Ottawa I-2", to: "lanceurs", slug: "ottawa-i-2" }
   - { label: "Valentina Kerman", to: "equipage", slug: "valentina-kerman" }
 jalons:
   - { date: "K-02", titre: "Champlain Q1 — qualification non habitée", detail: "Vol orbital complet sans équipage. Succès, capsule récupérée.", statut: "Succès" }
+  - { date: "K-02", titre: "Champlain Q2 — abandon au pas de tir", detail: "Tour de sauvetage qualifiée au sol.", statut: "Succès" }
+  - { date: "K-02", titre: "Champlain Q3 — sauvetage à max-Q", detail: "Tour de sauvetage qualifiée à pression dynamique maximale.", statut: "Succès" }
   - { date: "K-02", titre: "Champlain 1 — « Ungava »", detail: "Premier vol orbital habité de l'histoire. Valentina & Casgarde.", statut: "Succès" }
   - { date: "K-03", titre: "Champlain 2 — « Selkirk »", detail: "Première EVA. Science étendue. Valentina & Erganne.", statut: "Succès" }
   - { date: "K-03", titre: "Champlain 3 — rendez-vous & amarrage", detail: "Vol vers la cible orbitale CAT-V.", statut: "En préparation" }
