@@ -28,6 +28,7 @@ journal:
   - { t: "Mission", titre: "Programme scientifique étendu", detail: "Module de service enrichi : ~200 points collectés." }
   - { t: "Retour", titre: "Récupération", detail: "Capsule Selkirk récupérée près du KSC, deux astronautes saines et sauves." }
 precedente: { label: "Champlain 1 — Ungava", to: "missions", slug: "champlain-1-ungava" }
+suivante: { label: "Champlain 3 — Nahanni", to: "missions", slug: "champlain-3-nahanni" }
 photo: { caption: "Première EVA — V. Kerman", kind: flight }
 ---
 

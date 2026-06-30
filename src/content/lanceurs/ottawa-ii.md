@@ -1,76 +1,78 @@
 ---
 title: Ottawa II
 ref: CSA-LNR-OTTAWA-II
-classe: Lanceur de nouvelle génération — famille modulaire
-statut: En développement
-statutTon: slate
+classe: Lanceur moyen — nouvelle génération, famille modulaire
+statut: En service — production lancée
+statutTon: nominal
 resume: >-
-  Successeur de la famille Ottawa I. Cœur de plus grand diamètre, architecture
-  modulaire et coiffe élargie, conçu pour les charges volumineuses, les modules
-  habitables et les missions ambitieuses hors de portée des Ottawa I.
+  Successeur de la famille Ottawa I. Cœur cryogénique RS-68 de plus grand
+  diamètre, étage supérieur réallumable et coiffe élargie. Variante de référence
+  de la nouvelle famille : un cœur, six propulseurs à poudre GEM-63, pour 17,7 t
+  en orbite basse.
 famille: Ottawa
 specs:
-  diametre: "3,125 m visé (prototype en cours ; repli 2,5 m)"
-  etages: "2, modulable (II-0 / II-2 / II-4)"
-  premierVol: "Visé mi-K-04"
+  hauteur: "≈ 41 m (avec coiffe)"
+  diametre: "3,125 m (cœur) — coiffe jusqu'à 5 m"
+  etages: "2 (cœur + étage supérieur cryogénique) + 6 propulseurs à poudre"
+  premierVol: "Visé K-04"
   volsReussis: "—"
 etagesDetail:
-  - { nom: "Premier étage — cœur", ergols: "Kérosène / oxygène liquide", detail: "Réutilise l'infrastructure sol existante (arbitrage retenu sur l'hydrogène). Non récupérable au lancement ; R&D de récupération menée en parallèle (Block 2)." }
-  - { nom: "Étage supérieur cryogénique", ergols: "Hydrogène / oxygène liquides", detail: "Étage haute performance pour orbites hautes et injections lunaires." }
-  - { nom: "Propulseurs d'appoint (II-2 / II-4)", ergols: "Liquides", detail: "Boosters liquides pour les variantes lourdes ; II-2 obligatoirement liquide pour la certification habitée." }
+  - { nom: "Appoint au décollage", ergols: "Poudre (6 × GEM-63)", detail: "Six propulseurs à poudre épaulant le cœur au décollage, largués par découpleurs dédiés une fois épuisés." }
+  - { nom: "Premier étage — cœur", ergols: "Hydrogène / oxygène liquides (RS-68)", detail: "Cœur cryogénique propulsé par un unique RS-68. Montée en régime lente : allumage à T−7 s, libération seulement après vérification de la poussée (procédure PAD-OTT2-001)." }
+  - { nom: "Étage supérieur cryogénique", ergols: "Hydrogène / oxygène liquides (7 × RS-30)", detail: "Plateau de poussée modulable portant sept moteurs RS-30, capables de 60 rallumages — mise en orbite, circularisation et manœuvres ultérieures." }
+  - { nom: "3ᵉ étage (variante II-GTO)", ergols: "Cryogénique (Centaur III)", detail: "Étage Centaur III ajouté pour acheminer 10 t en orbite de transfert géostationnaire." }
+ascension:
+  - { t: "T−7 s", id: "S1", titre: "Allumage du RS-68", detail: "Mise à feu du cœur, montée en régime, vérification de poussée avant libération." }
+  - { t: "T+0", id: "S2", titre: "Décollage", detail: "Allumage des 6 GEM-63, ouverture des pinces de maintien." }
+  - { id: "S3", titre: "Largage des propulseurs à poudre", detail: "Séparation des 6 GEM-63 épuisés." }
+  - { id: "S4", titre: "Séparation du cœur", detail: "Extinction du RS-68 et largage du premier étage." }
+  - { id: "S5", titre: "Largage de la coiffe", detail: "Coiffe Tundra jusqu'à 5 m, larguée hors des couches denses." }
+  - { id: "S6", titre: "Allumage de l'étage supérieur", detail: "Sept RS-30 ; mise en orbite et circularisation, rallumables jusqu'à 60 fois." }
+  - { id: "S7", titre: "Séparation de la charge utile", detail: "Libération sur l'orbite visée." }
 perfs:
-  - { label: "Charge utile LEO — II-0", valeur: "10–14 t (cible)" }
-  - { label: "Charge utile LEO — II-2", valeur: "16–22 t (cible)" }
-  - { label: "Charge utile LEO — II-4", valeur: "28–36 t (cible)" }
-  - { label: "Diamètre de coiffe", valeur: "jusqu'à 5 m (cible)" }
+  - { label: "Charge utile LEO", valeur: "17,7 t" }
+  - { label: "Charge utile GTO (variante II-GTO)", valeur: "10 t" }
+  - { label: "Rallumages étage supérieur", valeur: "60 (RS-30)" }
+  - { label: "Diamètre de coiffe", valeur: "jusqu'à 5 m" }
 cahierDesCharges:
-  reference: "CdC CSA-LNR-OTTAWA-II — issu des sessions K-03"
+  reference: "CdC CSA-LNR-OTTAWA-II — sessions K-03"
   contexte: >-
-    Le constat d'épuisement de la logique « cœurs en grappe » (jusqu'à l'Ottawa
-    I-6) et l'émergence de charges volumineuses — sondes géantes, modules
-    habitables — imposent un lanceur de nouvelle génération plutôt qu'une énième
-    variante de l'Ottawa I.
+    L'épuisement de la logique « cœurs en grappe » (jusqu'à l'Ottawa I-6) et
+    l'émergence de charges volumineuses — sondes géantes, modules habitables —
+    imposaient un lanceur de nouvelle génération plutôt qu'une énième variante.
   exigences:
-    - "Cœur de nouvelle génération, diamètre cible 3,125 m (prototype à valider ; repli 2,5 m)."
-    - "Architecture modulaire : variantes II-0, II-2 et II-4 partageant le même cœur."
-    - "Coiffe jusqu'à 5 m pour accueillir sondes géantes et modules habitables."
-    - "Premier étage kérosène / oxygène liquide réutilisant l'infrastructure sol existante."
-    - "Étage supérieur cryogénique (hydrogène / oxygène liquides)."
-    - "Certification habitée intégrée dès la conception (pas de double campagne)."
-    - "Premier étage non récupérable au lancement ; récupération développée en parallèle (Block 2)."
-    - "Architecture des missions lunaires habitées par assemblage orbital (deux lancements)."
-  comparaison:
-    - { critere: "Diamètre de cœur", cible: "3,125 m" }
-    - { critere: "Charge utile LEO (II-2)", cible: "16–22 t" }
-    - { critere: "Coiffe maximale", cible: "5 m" }
-    - { critere: "Ergols 1er étage", cible: "Kérosène / LOX" }
-    - { critere: "Certification habitée", cible: "Dès la conception" }
-    - { critere: "Récupération 1er étage", cible: "Block 2 (différé)" }
-    - { critere: "Premier vol", cible: "Mi-K-04" }
+    - "Cœur de nouvelle génération, diamètre 3,125 m (prototype validé sur ce diamètre)."
+    - "Architecture modulaire : EL, L, II, II-2 partageant le même cœur et le même étage supérieur."
+    - "Coiffe jusqu'à 5 m pour sondes géantes et modules habitables."
+    - "Étage supérieur cryogénique réallumable (RS-30, 60 allumages)."
+    - "Certification habitée intégrée dès la conception (II-2 obligatoirement à cœurs liquides)."
+    - "Note : les ingénieurs ont retenu un cœur cryogénique RS-68 (LH2/LOX) plutôt que le kérosène voté en K-03/1, pour l'efficience et l'ergol unique cœur+étage — au prix d'adaptations sol cryogéniques, entérinées a posteriori par le Conseil."
 photo:
-  caption: "Ottawa II — maquette d'étude"
+  caption: "Ottawa II sur le pas de tir"
   kind: pad
 ---
 
-## Pourquoi une nouvelle famille
+## Rôle
 
-Les variantes de l'Ottawa I ont atteint leurs limites : l'étage supérieur léger
-est dépassé, le diamètre de cœur restreint bride les charges volumineuses, et
-l'empilement de cœurs (jusqu'à sept sur l'Ottawa I-6 abandonné) offre un
-rendement décroissant. L'Ottawa II repart d'un cœur neuf, plus large, pensé pour
-durer plusieurs exercices.
+L'Ottawa II inaugure la deuxième génération de lanceurs de l'agence. Là où la
+filière Ottawa I empilait des cœurs de 1,875 m, l'Ottawa II repart d'un cœur
+neuf de 3,125 m propulsé par un RS-68 cryogénique, surmonté d'un étage supérieur
+réallumable et d'une coiffe pouvant atteindre 5 m. C'est le lanceur des sondes
+géantes et des modules habitables que les Ottawa I ne pouvaient emporter.
 
-## Famille envisagée
+## Une famille modulaire
 
-Trois variantes partagent le même cœur : **II-0** (cœur seul, sondes lourdes et
-remplacement de l'Ottawa I-4), **II-2** (deux propulseurs liquides, lanceur
-habité principal et modules de station), et **II-4** (quatre propulseurs, charges
-les plus lourdes et assemblage orbital). Un concept à trois cœurs (« II-H »)
-reste sur la planche à dessin, gelé sauf nécessité absolue.
+Cette fiche décrit la variante de référence — un cœur, six GEM-63, 17,7 t en
+orbite basse. Autour d'elle gravite toute une famille partageant le même cœur :
+l'**Ottawa II-EL** (cœur seul, 6,7 t), l'**Ottawa II-L** (deux GEM-63, 12 t),
+l'**Ottawa II-2** (trois cœurs, 25 t), et leurs déclinaisons GTO obtenues par
+ajout d'un troisième étage. Le suffixe `-X` désigne le nombre de cœurs
+additionnels (les GEM-63 ne comptent pas) — héritage direct de la nomenclature
+Ottawa I.
 
-## Réserve industrielle
+## Sécurité au pas de tir
 
-L'Équipe C a émis une réserve majeure sur le saut de diamètre : passer de 1,875 m
-à 3,125 m représente un choc pour les chaînes de production, la logistique et les
-opérations au sol. Un prototype 3,125 m doit en valider la faisabilité avant tout
-engagement définitif ; à défaut, le programme se repliera sur 2,5 m.
+Le RS-68 montant lentement en régime, la procédure **PAD-OTT2-001** impose le
+maintien des pinces 7 secondes après allumage avant toute libération du lanceur :
+un relâchement prématuré ferait retomber la fusée sur le pas de tir. La règle est
+affichée en capitales dans chaque salle de contrôle.

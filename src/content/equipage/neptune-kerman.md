@@ -2,22 +2,24 @@
 title: Neptune Kerman
 ref: CSA-EQP-N-KERMAN
 specialite: Pilote
-statut: Active — en formation
+statut: Active
 statutTon: nominal
-niveau: 0
+niveau: 1
 resume: >-
-  Jeune pilote au talent discret mais constant — systématiquement classée dans le
-  top 3 des exercices. Réservée et peu loquace, elle s'épanouit aux côtés de
-  Valentina Kerman, qui la mentore. Affectée comme pilote à Champlain 3.
+  Jeune pilote au talent discret mais constant. Pour son tout premier vol, c'est
+  elle qui tenait les commandes lors du premier amarrage de l'histoire. Réservée
+  mais redoutablement précise, elle s'épanouit aux côtés de Valentina Kerman.
 specs:
   recrutement: "Exercice K-03"
-  volsEffectues: "0 (affectée à Champlain 3)"
-  tempsEspace: "—"
+  volsEffectues: "1 (Champlain 3)"
+  tempsEspace: "≈ quelques heures"
   evas: "0"
 distinctions:
+  - "Aux commandes lors du premier amarrage orbital de l'histoire (Champlain 3)"
   - "Systématiquement dans le top 3 des exercices de pilotage de l'agence"
-  - "Affectée comme pilote au premier rendez-vous orbital de l'agence (Champlain 3)"
-missions: []
+  - "Rendez-vous, approche et amarrage exécutés à son premier vol"
+missions:
+  - { label: "Champlain 3 — Nahanni", to: "missions", slug: "champlain-3-nahanni" }
 photo:
   caption: "N. Kerman — dossier d'équipage"
   kind: portrait
@@ -34,18 +36,15 @@ attentive, et d'un calme qui rappelle — à sa manière propre — celui de Val
 
 ## Une affinité utile
 
-Le Conseil a retenu une observation du centre d'entraînement : là où Neptune
+Le Conseil avait retenu une observation du centre d'entraînement : là où Neptune
 reste en retrait avec la plupart, elle se montre nettement plus à l'aise aux
 côtés de Valentina Kerman. Plutôt que de laisser cette réserve la tenir à l'écart,
-l'agence a choisi d'en faire une force : associer la recrue à la pilote en chef
-pour Champlain 3, c'est offrir à Neptune le binôme dans lequel elle donne le
-meilleur d'elle-même, et garantir qu'elle ne se retrouve pas isolée. Le talent ne
-se cultive pas seulement par l'entraînement, mais aussi en mettant chacun là où
-il se sent à sa place.
+l'agence en a fait une force — et le pari a été payant au-delà des espérances.
 
-## Champlain 3
+## Baptême du feu historique
 
-Pour son premier vol, l'exercice est de taille : un rendez-vous orbital, peut-être
-le premier amarrage de l'histoire. Deux paires de mains seront nécessaires aux
-commandes — celles de Valentina et les siennes. Un baptême du feu à la hauteur de
-ce que ses résultats laissent présager.
+Pour un premier vol, l'exercice était de taille : un rendez-vous orbital, puis le
+premier amarrage de l'histoire. Neptune était **aux commandes** lors de l'approche
+finale, posant la Nahanni sur le CAT-V à 4 cm/s pendant que Valentina la
+déchargeait des communications. La recrue discrète est entrée dans l'histoire sans
+trembler. Le centre d'entraînement avait vu juste.

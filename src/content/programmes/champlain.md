@@ -6,8 +6,8 @@ statutTon: nominal
 devise: "Samuel de Champlain (1567–1635) — « le Père de la Nouvelle-France », qui traversa l'Atlantique une vingtaine de fois."
 resume: >-
   Programme de vols habités de l'agence. De la première mise en orbite d'un
-  équipage jusqu'au rendez-vous orbital, Champlain ouvre la voie aux missions
-  habitées ambitieuses.
+  équipage jusqu'au premier amarrage orbital, Champlain ouvre la voie aux
+  missions habitées ambitieuses.
 objectifs:
   - "Placer puis ramener un équipage en orbite en toute sécurité"
   - "Valider la sortie extravéhiculaire (EVA)"
@@ -15,6 +15,7 @@ objectifs:
   - "Préparer les compétences nécessaires aux futures missions lunaires habitées"
 materiel:
   - { label: "Champlain I", to: "vaisseaux", slug: "champlain-i" }
+  - { label: "CAT-V", to: "vaisseaux", slug: "cat-v" }
   - { label: "Capsule Victoria", to: "vaisseaux", slug: "capsule-victoria" }
   - { label: "Ottawa I-2", to: "lanceurs", slug: "ottawa-i-2" }
   - { label: "Valentina Kerman", to: "equipage", slug: "valentina-kerman" }
@@ -24,7 +25,8 @@ jalons:
   - { date: "K-02", titre: "Champlain Q3 — sauvetage à max-Q", detail: "Tour de sauvetage qualifiée à pression dynamique maximale.", statut: "Succès" }
   - { date: "K-02", titre: "Champlain 1 — « Ungava »", detail: "Premier vol orbital habité de l'histoire. Valentina & Casgarde.", statut: "Succès" }
   - { date: "K-03", titre: "Champlain 2 — « Selkirk »", detail: "Première EVA. Science étendue. Valentina & Erganne.", statut: "Succès" }
-  - { date: "K-03", titre: "Champlain 3 — rendez-vous & amarrage", detail: "Vol vers la cible orbitale CAT-V.", statut: "En préparation" }
+  - { date: "K-03", titre: "Champlain 3 — « Nahanni »", detail: "Premier rendez-vous et premier amarrage de l'histoire (sur le CAT-V). Valentina & Neptune.", statut: "Succès" }
+  - { titre: "Champlain 4 / future plateforme", detail: "Nouvelle capsule à maintien d'alignement automatique ; standard d'amarrage universel à trancher.", statut: "Envisagé" }
 ---
 
 ## Esprit du programme
@@ -32,11 +34,13 @@ jalons:
 Champlain est le programme par lequel l'agence apprend à vivre et travailler
 dans l'espace. Chaque mission ajoute une compétence à la précédente : d'abord
 survivre en orbite, puis en sortir, puis y retrouver et rejoindre un autre
-engin. Cette progression méthodique — un pas après l'autre, jamais deux à la
-fois — est la marque de fabrique du Conseil.
+engin, enfin s'y amarrer. Cette progression méthodique — un pas après l'autre,
+jamais deux à la fois — est la marque de fabrique du Conseil.
 
 ## Suite
 
-Le programme se poursuit avec le rendez-vous orbital (Champlain 3) autour d'une
-cible dédiée laissée en orbite, première étape vers l'assemblage de missions
-plus lourdes qu'un seul lanceur ne peut emporter.
+Avec le rendez-vous et l'amarrage maîtrisés, le programme a posé les fondations
+de l'assemblage orbital — première étape vers des missions plus lourdes qu'un
+seul lanceur ne peut emporter. La prochaine plateforme habitée devra intégrer un
+maintien d'alignement automatique et trancher la question d'un standard
+d'amarrage universel.

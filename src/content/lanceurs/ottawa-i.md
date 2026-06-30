@@ -2,12 +2,12 @@
 title: Ottawa I
 ref: CSA-LNR-OTTAWA-I
 classe: Lanceur léger
-statut: Actif
-statutTon: nominal
+statut: Retiré du service
+statutTon: lost
 resume: >-
   Premier lanceur de la famille Ottawa. Un cœur principal épaulé de deux
-  propulseurs d'appoint à poudre pour le décollage, surmonté d'un étage
-  supérieur léger. Cheval de bataille des petites charges utiles.
+  propulseurs d'appoint à poudre, surmonté d'un étage supérieur léger. Cheval de
+  bataille des petites charges utiles, aujourd'hui retiré avec les honneurs.
 famille: Ottawa
 specs:
   hauteur: "21,8 m"
@@ -15,7 +15,7 @@ specs:
   etages: "2 (cœur + étage supérieur) + 2 propulseurs d'appoint"
   masseDecollage: "48.3 t (config de référence à vide)"
   premierVol: "Exercice K-02"
-  volsReussis: "Plusieurs"
+  volsReussis: "Plusieurs (dont l'ultime mission Champlain 3-A)"
 etagesDetail:
   - { nom: "Appoint au décollage", ergols: "Poudre (9.8 t)", detail: "Deux propulseurs latéraux fournissant la poussée d'appoint nécessaire au décollage." }
   - { nom: "Premier étage — cœur", ergols: "Kérosène (12.4 t) / oxygène liquide (15.1 t)", detail: "Cœur principal assurant l'essentiel de l'ascension." }
@@ -43,6 +43,14 @@ L'Ottawa I est le point de départ de toute la lignée. Conçu pour les petites
 charges utiles, il a porté les premières sondes scientifiques de l'agence en
 orbite basse et au-delà. Son architecture — un cœur unique flanqué de deux
 propulseurs à poudre — privilégie la simplicité et le faible coût.
+
+## Retraite avec les honneurs
+
+Après avoir porté les premières sondes, qualifié le programme Champlain et placé
+le CAT-V en orbite pour Champlain 3-A — son ultime mission —, l'Ottawa I a été
+retiré du service. Il rejoint les micro-lanceurs Winnipeg au registre des
+retraités. La filière qu'il a fondée reste vivante : les Ottawa I-2 et I-4
+poursuivent le service, en attendant le relais de la nouvelle famille Ottawa II.
 
 ## Postérité
 
